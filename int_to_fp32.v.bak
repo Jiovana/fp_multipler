@@ -1,0 +1,72 @@
+module int_to_fp32 (
+    input  wire [31:0] int_in,
+    output wire        Exception,
+    output wire        Overflow,
+    output wire        Underflow,
+    output wire [31:0] result
+);
+
+wire        sign;
+wire [31:0] abs_val;
+wire [4:0]  leading_zeros;
+wire [7:0]  exponent_raw;
+wire [22:0] mantissa;
+wire        round_up, guard_bit, round_bit, sticky_bit;
+wire [55:0] shifted_val;
+wire [31:0] int_abs_shifted;
+wire [24:0] mantissa_round;
+wire [7:0]  exponent_final;
+wire        mantissa_overflow;
+wire        is_zero;
+
+assign sign = int_in[31];
+
+// Absolute value
+assign abs_val = sign ? (~int_in + 1) : int_in;
+
+// Detect zero
+assign is_zero = (abs_val == 32'd0);
+
+// Count leading zeros (can be replaced with a LZD module for synthesis)
+function [4:0] clz32(input [31:0] x);
+    integer i;
+    begin
+        clz32 = 0;
+        for (i = 31; i >= 0; i = i - 1)
+            if (x[i]) begin
+                clz32 = 31 - i;
+                disable clz32;
+            end
+    end
+endfunction
+
+assign leading_zeros = clz32(abs_val);
+
+// Shifted value aligned to MSB for mantissa extraction
+assign int_abs_shifted = abs_val << leading_zeros;
+
+// Mantissa bits
+assign shifted_val = {int_abs_shifted, 24'd0};  // for GRS
+assign guard_bit  = shifted_val[31];
+assign round_bit  = shifted_val[30];
+assign sticky_bit = |shifted_val[29:0];
+assign round_up   = guard_bit & (round_bit | sticky_bit | shifted_val[32]);
+
+assign mantissa_round = {shifted_val[55:33]} + round_up;
+assign mantissa_overflow = mantissa_round[24];
+
+assign mantissa = mantissa_overflow ? mantissa_round[23:1] : mantissa_round[22:0];
+assign exponent_raw = 8'd158 - leading_zeros + mantissa_overflow; // 127 + 31 - LZ + overflow adjust
+
+assign exponent_final = is_zero ? 8'd0 : exponent_raw;
+
+// Exception/Overflow/Underflow logic
+assign Exception = 1'b0; // Not used for integers
+assign Overflow  = (exponent_final >= 8'd255) && !is_zero;
+assign Underflow = (abs_val != 0) && (exponent_final == 0);
+assign result    = is_zero   ? 32'd0 :
+                   Overflow  ? {sign, 8'hFF, 23'd0} :
+                   Underflow ? {sign, 31'd0} :
+                   {sign, exponent_final, mantissa};
+
+endmodule

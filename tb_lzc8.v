@@ -1,0 +1,34 @@
+module tb_lzc8;
+  reg  [7:0] in;
+  wire [2:0] out_z;
+  wire       v;
+
+  lzc_miao_8 uut (
+    .in(in),
+    .out_z(out_z),
+    .v(v)
+  );
+
+  task test(input [7:0] val);
+    begin
+      in = val;
+      #10;
+      $display("in = %b | out_z = %0d | v = %b", in, out_z, v);
+    end
+  endtask
+
+  initial begin
+    $display("---- Testing lzc_miao_8 ----");
+    test(8'b00000000); // v = 0
+    test(8'b00000001); // v = 1, out_z = 7
+    test(8'b00000010); // out_z = 6
+    test(8'b00000100); // out_z = 5
+    test(8'b00001000); // out_z = 4
+    test(8'b00010000); // out_z = 3
+    test(8'b00100000); // out_z = 2
+    test(8'b01000000); // out_z = 1
+    test(8'b10000000); // out_z = 0
+    test(8'b11111111); // out_z = 0
+    $stop;
+  end
+endmodule

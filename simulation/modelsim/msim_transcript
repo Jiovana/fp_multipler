@@ -1,0 +1,71 @@
+# Reading C:/altera/13.0sp1/modelsim_ase/tcl/vsim/pref.tcl 
+# do fp_multiplier_run_msim_rtl_verilog.do 
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Copying C:\altera\13.0sp1\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied C:\altera\13.0sp1\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vlog -vlog01compat -work work +incdir+C:/Users/Jiovana/Documents/FP_multiplier {C:/Users/Jiovana/Documents/FP_multiplier/int_to_fp32.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module int_to_fp32
+# 
+# Top level modules:
+# 	int_to_fp32
+# vlog -vlog01compat -work work +incdir+C:/Users/Jiovana/Documents/FP_multiplier {C:/Users/Jiovana/Documents/FP_multiplier/miao_lzc32.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module lzc_miao_8_old
+# -- Compiling module lzc_miao_16
+# -- Compiling module lzc_miao_8
+# -- Compiling module miao_lzc32
+# 
+# Top level modules:
+# 	lzc_miao_8_old
+# 	lzc_miao_16
+# 	miao_lzc32
+# 
+# vlog -vlog01compat -work work +incdir+C:/Users/Jiovana/Documents/FP_multiplier {C:/Users/Jiovana/Documents/FP_multiplier/tb_int_to_fp32.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module tb_int_to_fp32
+# 
+# Top level modules:
+# 	tb_int_to_fp32
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneiii_ver -L rtl_work -L work -voptargs="+acc"  tb_int_to_fp32
+# vsim -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneiii_ver -L rtl_work -L work -voptargs=\"+acc\" -t 1ps tb_int_to_fp32 
+# Loading work.tb_int_to_fp32
+# Loading work.int_to_fp32
+# Loading work.miao_lzc32
+# Loading work.lzc_miao_8
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# Starting IntToFloat32 tests...
+# 
+# int_in = 0 => result = 00000000 | Sign = 0, Exp =   0, Man =       0 | OF = 0, UF = 0, EXC = 0
+# int_in = 1 => result = 3f800000 | Sign = 0, Exp = 127, Man =       0 | OF = 0, UF = 0, EXC = 0
+# int_in = 4294967291 => result = c0a00000 | Sign = 1, Exp = 129, Man = 2097152 | OF = 0, UF = 0, EXC = 0
+# int_in = 2 => result = 40000000 | Sign = 0, Exp = 128, Man =       0 | OF = 0, UF = 0, EXC = 0
+# int_in = 4294967294 => result = c0000000 | Sign = 1, Exp = 128, Man =       0 | OF = 0, UF = 0, EXC = 0
+# int_in = 3 => result = 40400000 | Sign = 0, Exp = 128, Man = 4194304 | OF = 0, UF = 0, EXC = 0
+# int_in = 255 => result = 437f0000 | Sign = 0, Exp = 134, Man = 8323072 | OF = 0, UF = 0, EXC = 0
+# int_in = 1023 => result = 447fc000 | Sign = 0, Exp = 136, Man = 8372224 | OF = 0, UF = 0, EXC = 0
+# int_in = 8388607 => result = 4afffffe | Sign = 0, Exp = 149, Man = 8388606 | OF = 0, UF = 0, EXC = 0
+# int_in = 8388608 => result = 4b000000 | Sign = 0, Exp = 150, Man =       0 | OF = 0, UF = 0, EXC = 0
+# int_in = 2147483647 => result = 4f7fffff | Sign = 0, Exp = 158, Man = 8388607 | OF = 0, UF = 0, EXC = 0
+# int_in = 2147483648 => result = cf000000 | Sign = 1, Exp = 158, Man =       0 | OF = 0, UF = 0, EXC = 0
+# int_in = 16777215 => result = 4b7fffff | Sign = 0, Exp = 150, Man = 8388607 | OF = 0, UF = 0, EXC = 0
+# int_in = 16777216 => result = 4b800000 | Sign = 0, Exp = 151, Man =       0 | OF = 0, UF = 0, EXC = 0
+# 
+# Finished testing.
+# Break in Module tb_int_to_fp32 at C:/Users/Jiovana/Documents/FP_multiplier/tb_int_to_fp32.v line 47
+# Simulation Breakpoint: Break in Module tb_int_to_fp32 at C:/Users/Jiovana/Documents/FP_multiplier/tb_int_to_fp32.v line 47
+# MACRO ./fp_multiplier_run_msim_rtl_verilog.do PAUSED at line 18
