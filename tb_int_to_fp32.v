@@ -38,10 +38,11 @@ module tb_int_to_fp32;
         display_result(32'd1023);       // Check mantissa range
         display_result(32'd8388607);    // Max int without rounding mantissa
         display_result(32'd8388608);    // Will round mantissa
-        display_result(32'h7FFFFFFF);   // INT_MAX - did not work
-        display_result(32'h80000000);   // INT_MIN - did not wokr 
+        display_result(32'h7FFFFFFF);   // INT_MAX 
+        display_result(32'h80000000);   // INT_MIN - negative value
         display_result(32'd16777215);   // 2^24 - 1, max int exactly representable
         display_result(32'd16777216);   // 2^24, needs rounding
+		  // all tests working
 
         $display("\nFinished testing.");
         $stop;

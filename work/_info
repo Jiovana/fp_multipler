@@ -1,0 +1,396 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\Jiovana\Documents\FP_multiplier
+vdequantizer_block
+Z1 IohZ83mJ4_0NCh0BPdS^[:1
+Z2 V;6kdWSc9gCI9=84EX9b4b3
+Z3 dC:\Users\Jiovana\Documents\FP_multiplier\fp_multipler
+Z4 w1751482243
+Z5 8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block.v
+Z6 FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block.v
+L0 1
+Z7 OV;L;10.1d;51
+r1
+31
+Z8 o-work work -O0
+Z9 !s100 6Ykf8FG:ZBB9`zmX5AfU12
+Z10 !s108 1751488181.417000
+Z11 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block.v|
+Z12 !s90 -reportprogress|300|-work|work|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vdequantizer_block_pipe_tb
+Z13 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+Z14 I_=AoGz`?;`@PI1H;Sd@>A1
+Z15 V>j]V>mZZFYn[:?4;BYPfO0
+S1
+R3
+Z16 w1751482544
+Z17 8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_pipe_tb.sv
+Z18 FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_pipe_tb.sv
+L0 3
+R7
+r1
+31
+Z19 o-work work -sv -O0
+Z20 !s100 6bM97c4iTmOOFajPj7@mH0
+Z21 !s105 dequantizer_block_pipe_tb_sv_unit
+Z22 !s108 1751488181.448000
+Z23 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_pipe_tb.sv|
+Z24 !s90 -reportprogress|300|-work|work|-sv|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_pipe_tb.sv|
+!i10b 1
+!s85 0
+!s101 -O0
+vdequantizer_block_tb
+Z25 I]AQDM0GELh=YIoDVW?dW_0
+Z26 VKW?;77G6@m^>5d_4fA>H83
+R3
+Z27 w1751397904
+Z28 8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_tb.v
+Z29 FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_tb.v
+L0 3
+R7
+r1
+31
+R8
+Z30 !s100 Em:o]ZFV@AYmA]WK^i1R]0
+Z31 !s108 1751488181.480000
+Z32 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_tb.v|
+Z33 !s90 -reportprogress|300|-work|work|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_tb.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vint_to_fp32
+Z34 Il>`a7HmL<c56GmUlgVEF@2
+Z35 VZEcn=c@NEzQNFdgYZecL]3
+R3
+Z36 w1751393765
+Z37 8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/int_to_fp32.v
+Z38 FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/int_to_fp32.v
+L0 1
+R7
+r1
+31
+R8
+Z39 !s100 gRjT_k:n<6d0WCj5Nomg03
+Z40 !s108 1751488181.558000
+Z41 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/int_to_fp32.v|
+Z42 !s90 -reportprogress|300|-work|work|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/int_to_fp32.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vint_to_fp32_pipeline
+Z43 I9GZkT1OO2NT5PWa9L@L0`0
+Z44 VX=a?KI58T7[^n6d_E5EKW3
+R3
+Z45 w1751482115
+Z46 8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/int_to_fp32_pipeline.v
+Z47 FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/int_to_fp32_pipeline.v
+L0 1
+R7
+r1
+31
+R8
+Z48 !s100 DGSUXB_GN2zCeXM`HBJ[_0
+Z49 !s108 1751488181.589000
+Z50 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/int_to_fp32_pipeline.v|
+Z51 !s90 -reportprogress|300|-work|work|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/int_to_fp32_pipeline.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vlzc_miao_16
+Z52 Ib1f[YfXZPbhkJ6N1SJQK50
+Z53 V?@O=SEnOYNdEIBeI6?6^e3
+R3
+Z54 w1750792816
+Z55 8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/miao_lzc32.v
+Z56 FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/miao_lzc32.v
+L0 40
+R7
+r1
+31
+Z57 !s108 1751488181.605000
+Z58 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/miao_lzc32.v|
+Z59 !s90 -reportprogress|300|-work|work|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/miao_lzc32.v|
+R8
+Z60 !s100 ^^>W5UJ>h9H@Fb@J@Y29H3
+!i10b 1
+!s85 0
+!s101 -O0
+vlzc_miao_8
+Z61 I<OPLH7[9KmkCXCBiHIlH>1
+Z62 VM]4Td9?RH6gEaX==X7bYM0
+R3
+R54
+R55
+R56
+L0 58
+R7
+r1
+31
+R57
+R58
+R59
+R8
+Z63 !s100 JkE0dF9Rfnm:2dgA6LSY@2
+!i10b 1
+!s85 0
+!s101 -O0
+vlzc_miao_8_old
+Z64 Ii3_2WmKYWmk>LIlPaQYll2
+Z65 V6^8R8ImFg@Y:hWfb1nACN2
+R3
+R54
+R55
+R56
+L0 13
+R7
+r1
+31
+R57
+R58
+R59
+R8
+Z66 !s100 o1W?ZfSH8B91=Xglb[G[[1
+!i10b 1
+!s85 0
+!s101 -O0
+vmiao_lzc32
+Z67 IONQz<HkO?LZj=H[jhGUAR1
+Z68 Vi0WNWmg?<f?3mg0zYK3Tb3
+R3
+R54
+R55
+R56
+L0 81
+R7
+r1
+31
+R57
+R58
+R59
+R8
+Z69 !s100 4he:2Zk0z5`Ud4mg;UTHd0
+!i10b 1
+!s85 0
+!s101 -O0
+vMultiplication
+Z70 ILBC9g^Tb`k8O`?8VQiR7d2
+Z71 Vc[3k=`SCXYgXjdD05YkCC1
+R3
+Z72 w1750708646
+Z73 8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication.v
+Z74 FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication.v
+L0 10
+R7
+r1
+31
+R8
+Z75 n@multiplication
+Z76 !s100 ;`6e@G>VahONb_@OE`zO70
+Z77 !s108 1751488181.652000
+Z78 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication.v|
+Z79 !s90 -reportprogress|300|-work|work|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vMultiplication2
+Z80 Ie8EmL_bZTDmV2@5Xo]VEA2
+Z81 VgE1A@T`^eiKkSK?70EN@62
+R3
+Z82 w1750712298
+Z83 8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/fpmult2.v
+Z84 FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/fpmult2.v
+L0 3
+R7
+r1
+31
+R8
+Z85 n@multiplication2
+Z86 !s100 NC6<H8Wzn8DPWH?dHgaD81
+Z87 !s108 1751488181.527000
+Z88 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/fpmult2.v|
+Z89 !s90 -reportprogress|300|-work|work|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/fpmult2.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vMultiplication__pipe_tb
+Z90 IAEZb003?L40hiYH>lUTjn1
+Z91 VTBdj7=4P<_kU57=X7fXmF1
+R3
+Z92 w1751311947
+Z93 8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication__pipe_tb.v
+Z94 FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication__pipe_tb.v
+L0 1
+R7
+r1
+31
+R8
+Z95 n@multiplication__pipe_tb
+Z96 !s100 Ban^0L]h8hE?Wn?_FO0ae0
+Z97 !s108 1751488181.668000
+Z98 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication__pipe_tb.v|
+Z99 !s90 -reportprogress|300|-work|work|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication__pipe_tb.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vMultiplication_pipe_tb
+Z100 IC@geB8zLfCLYl1T_CmbWd0
+Z101 VYd[@U<V[hT;ml7c]7NYLQ2
+R3
+Z102 w1751311148
+Z103 8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_tb.v
+Z104 FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_tb.v
+L0 1
+R7
+r1
+31
+R8
+Z105 n@multiplication_pipe_tb
+Z106 !s100 gzL`hZN>hQ=Yg>_Jh>O^R0
+Z107 !s108 1751488181.715000
+Z108 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_tb.v|
+Z109 !s90 -reportprogress|300|-work|work|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_tb.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vMultiplication_pipeline
+Z110 IK2c1>RgPi:l46EZ4QOjk:0
+Z111 VjeJZ?9lmlfWZSNog_f5?i2
+R3
+Z112 w1751482075
+Z113 8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_pipeline.v
+Z114 FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_pipeline.v
+L0 17
+R7
+r1
+31
+R8
+Z115 n@multiplication_pipeline
+Z116 !s100 19Co;RTBkT^j<PkXT>PRB2
+Z117 !s108 1751488181.700000
+Z118 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_pipeline.v|
+Z119 !s90 -reportprogress|300|-work|work|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_pipeline.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vmultiplication_tb_python
+Z120 I?EmdWASmkFVc<KDeSnz4V1
+Z121 VYA0`z<6HZC<6lhEbI<@@J1
+R3
+Z122 w1750709006
+Z123 8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_tb_python.v
+Z124 FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_tb_python.v
+L0 12
+R7
+r1
+31
+R8
+Z125 !s100 9YP4egPLIc8XY]:_K=Md_3
+Z126 !s108 1751488181.746000
+Z127 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_tb_python.v|
+Z128 !s90 -reportprogress|300|-work|work|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_tb_python.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vtb_dequantizer_parallel
+R13
+!i10b 1
+!s100 dejClPV;GohJkBOJ]]RFU3
+InYb@b?ZDEm8C`_zOB88bJ3
+Z129 VEa[?HRf3R;j;WjH=4OZRN1
+Z130 !s105 tb_dequantizer_parallel_sv_unit
+S1
+R3
+w1751489672
+Z131 8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_parallel.sv
+Z132 FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_parallel.sv
+L0 3
+R7
+r1
+!s85 0
+31
+!s108 1751489676.384000
+!s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_parallel.sv|
+Z133 !s90 -reportprogress|300|-work|work|-sv|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_parallel.sv|
+!s101 -O0
+R19
+vtb_int_to_fp32
+Z134 IZQ2o6PW]UmLd0e2;gn7H71
+Z135 VLS06IO5:k=VAbn8@dDIYH1
+R3
+Z136 w1751394295
+Z137 8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_int_to_fp32.v
+Z138 FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_int_to_fp32.v
+L0 3
+R7
+r1
+31
+R8
+Z139 !s100 7Dh=8KX6H0:S3cO:4FYFY3
+Z140 !s108 1751488181.795000
+Z141 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_int_to_fp32.v|
+Z142 !s90 -reportprogress|300|-work|work|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_int_to_fp32.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vtb_int_to_fp32_pipeline
+Z143 IAf[_BzGoLz7fY5b73WAKN3
+Z144 VHno^@QL41K;ei73C<8A@[1
+R3
+Z145 w1751395413
+Z146 8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_int_to_fp32_pipeline.v
+Z147 FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_int_to_fp32_pipeline.v
+L0 3
+R7
+r1
+31
+R8
+Z148 !s100 l`4gL_F1PgS1VY7PY:ZV51
+Z149 !s108 1751488181.825000
+Z150 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_int_to_fp32_pipeline.v|
+Z151 !s90 -reportprogress|300|-work|work|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_int_to_fp32_pipeline.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vtb_lzc8
+Z152 I78ST03U3zV?g^eGj91?Pg1
+Z153 Vl<h:<Ck3fd`NXHi0XJ=YF1
+R3
+Z154 w1750790423
+Z155 8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_lzc8.v
+Z156 FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_lzc8.v
+L0 1
+R7
+r1
+31
+R8
+Z157 !s100 j?<FzmEGe?6Eh;@<an6oD1
+Z158 !s108 1751488181.872000
+Z159 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_lzc8.v|
+Z160 !s90 -reportprogress|300|-work|work|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_lzc8.v|
+!i10b 1
+!s85 0
+!s101 -O0
+vtb_lzc_miao_32
+Z161 IZLPf`Qj3JAL?NK;Hm`Z0b1
+Z162 VMai^n2d:FUUlL9^i]HlD10
+R3
+Z163 w1750793000
+Z164 8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_lzc_miao_32.v
+Z165 FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_lzc_miao_32.v
+L0 3
+R7
+r1
+31
+R8
+Z166 !s100 _o]8Bg95Xb1F3@T@Eb1@X0
+Z167 !s108 1751488181.841000
+Z168 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_lzc_miao_32.v|
+Z169 !s90 -reportprogress|300|-work|work|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_lzc_miao_32.v|
+!i10b 1
+!s85 0
+!s101 -O0

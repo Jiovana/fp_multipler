@@ -1,5 +1,5 @@
 Flow report for fp_multiplier
-Thu Jun 26 17:24:54 2025
+Wed Jul 02 17:46:28 2025
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -40,22 +40,20 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Thu Jun 26 17:24:54 2025           ;
+; Flow Status                        ; Flow Failed - Wed Jul 02 17:46:28 2025          ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; fp_multiplier                                   ;
-; Top-level Entity Name              ; int_to_fp32                                     ;
+; Top-level Entity Name              ; dequantizer_block                               ;
 ; Family                             ; Cyclone III                                     ;
-; Total logic elements               ; 343 / 5,136 ( 7 % )                             ;
-;     Total combinational functions  ; 343 / 5,136 ( 7 % )                             ;
-;     Dedicated logic registers      ; 0 / 5,136 ( 0 % )                               ;
-; Total registers                    ; 0                                               ;
-; Total pins                         ; 67 / 183 ( 37 % )                               ;
-; Total virtual pins                 ; 0                                               ;
-; Total memory bits                  ; 0 / 423,936 ( 0 % )                             ;
-; Embedded Multiplier 9-bit elements ; 0 / 46 ( 0 % )                                  ;
-; Total PLLs                         ; 0 / 2 ( 0 % )                                   ;
-; Device                             ; EP3C5F256C6                                     ;
-; Timing Models                      ; Final                                           ;
+; Total logic elements               ; N/A until Partition Merge                       ;
+;     Total combinational functions  ; N/A until Partition Merge                       ;
+;     Dedicated logic registers      ; N/A until Partition Merge                       ;
+; Total registers                    ; N/A until Partition Merge                       ;
+; Total pins                         ; N/A until Partition Merge                       ;
+; Total virtual pins                 ; N/A until Partition Merge                       ;
+; Total memory bits                  ; N/A until Partition Merge                       ;
+; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                       ;
+; Total PLLs                         ; N/A until Partition Merge                       ;
 +------------------------------------+-------------------------------------------------+
 
 
@@ -64,86 +62,94 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/26/2025 17:24:46 ;
+; Start date & time ; 07/02/2025 17:46:28 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; fp_multiplier       ;
 +-------------------+---------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                                ;
-+--------------------------------------+---------------------------------+---------------+-------------+--------------------------+
-; Assignment Name                      ; Value                           ; Default Value ; Entity Name ; Section Id               ;
-+--------------------------------------+---------------------------------+---------------+-------------+--------------------------+
-; COMPILER_SIGNATURE_ID                ; 237785200786774.175096948606368 ; --            ; --          ; --                       ;
-; EDA_DESIGN_INSTANCE_NAME             ; NA                              ; --            ; --          ; multiplication_tb        ;
-; EDA_DESIGN_INSTANCE_NAME             ; NA                              ; --            ; --          ; multiplication_tb_python ;
-; EDA_DESIGN_INSTANCE_NAME             ; NA                              ; --            ; --          ; tb_int_to_fp32           ;
-; EDA_DESIGN_INSTANCE_NAME             ; NA                              ; --            ; --          ; tb_lzc_miao_32           ;
-; EDA_DESIGN_INSTANCE_NAME             ; NA                              ; --            ; --          ; tb_lzc8                  ;
-; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; tb_int_to_fp32                  ; --            ; --          ; eda_simulation           ;
-; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                     ; --            ; --          ; eda_simulation           ;
-; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)       ; <None>        ; --          ; --                       ;
-; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                 ; --            ; --          ; eda_simulation           ;
-; EDA_TEST_BENCH_FILE                  ; Multiplication_tb.v             ; --            ; --          ; multiplication_tb        ;
-; EDA_TEST_BENCH_FILE                  ; Multiplication_tb_python.v      ; --            ; --          ; multiplication_tb_python ;
-; EDA_TEST_BENCH_FILE                  ; tb_int_to_fp32.v                ; --            ; --          ; tb_int_to_fp32           ;
-; EDA_TEST_BENCH_FILE                  ; tb_lzc_miao_32.v                ; --            ; --          ; tb_lzc_miao_32           ;
-; EDA_TEST_BENCH_FILE                  ; tb_lzc8.v                       ; --            ; --          ; tb_lzc8                  ;
-; EDA_TEST_BENCH_MODULE_NAME           ; multiplication_tb               ; --            ; --          ; multiplication_tb        ;
-; EDA_TEST_BENCH_MODULE_NAME           ; multiplication_tb_python        ; --            ; --          ; multiplication_tb_python ;
-; EDA_TEST_BENCH_MODULE_NAME           ; tb_int_to_fp32                  ; --            ; --          ; tb_int_to_fp32           ;
-; EDA_TEST_BENCH_MODULE_NAME           ; tb_lzc_miao_32                  ; --            ; --          ; tb_lzc_miao_32           ;
-; EDA_TEST_BENCH_MODULE_NAME           ; tb_lzc8                         ; --            ; --          ; tb_lzc8                  ;
-; EDA_TEST_BENCH_NAME                  ; multiplication_tb               ; --            ; --          ; eda_simulation           ;
-; EDA_TEST_BENCH_NAME                  ; multiplication_tb_python        ; --            ; --          ; eda_simulation           ;
-; EDA_TEST_BENCH_NAME                  ; tb_int_to_fp32                  ; --            ; --          ; eda_simulation           ;
-; EDA_TEST_BENCH_NAME                  ; tb_lzc_miao_32                  ; --            ; --          ; eda_simulation           ;
-; EDA_TEST_BENCH_NAME                  ; tb_lzc8                         ; --            ; --          ; eda_simulation           ;
-; EDA_TIME_SCALE                       ; 1 ps                            ; --            ; --          ; eda_simulation           ;
-; PARTITION_COLOR                      ; 16764057                        ; --            ; int_to_fp32 ; Top                      ;
-; PARTITION_FITTER_PRESERVATION_LEVEL  ; PLACEMENT_AND_ROUTING           ; --            ; int_to_fp32 ; Top                      ;
-; PARTITION_NETLIST_TYPE               ; SOURCE                          ; --            ; int_to_fp32 ; Top                      ;
-; PROJECT_OUTPUT_DIRECTORY             ; output_files                    ; --            ; --          ; --                       ;
-; TOP_LEVEL_ENTITY                     ; int_to_fp32                     ; fp_multiplier ; --          ; --                       ;
-+--------------------------------------+---------------------------------+---------------+-------------+--------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                       ;
++--------------------------------------+---------------------------------+---------------+-------------------+---------------------------+
+; Assignment Name                      ; Value                           ; Default Value ; Entity Name       ; Section Id                ;
++--------------------------------------+---------------------------------+---------------+-------------------+---------------------------+
+; COMPILER_SIGNATURE_ID                ; 237785200786774.175148918815068 ; --            ; --                ; --                        ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                              ; --            ; --                ; multiplication_tb         ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                              ; --            ; --                ; multiplication_tb_python  ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                              ; --            ; --                ; tb_int_to_fp32            ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                              ; --            ; --                ; tb_lzc_miao_32            ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                              ; --            ; --                ; tb_lzc8                   ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                              ; --            ; --                ; Multiplication__pipe_tb   ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                              ; --            ; --                ; dequantizer_block_tb      ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                              ; --            ; --                ; tb_int_to_fp32_pipeline   ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                              ; --            ; --                ; dequantizer_block_pipe_tb ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                              ; --            ; --                ; tb_dequantizer_parallel   ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; tb_dequantizer_parallel         ; --            ; --                ; eda_simulation            ;
+; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                     ; --            ; --                ; eda_simulation            ;
+; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)       ; <None>        ; --                ; --                        ;
+; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                 ; --            ; --                ; eda_simulation            ;
+; EDA_TEST_BENCH_FILE                  ; Multiplication_tb.v             ; --            ; --                ; multiplication_tb         ;
+; EDA_TEST_BENCH_FILE                  ; Multiplication_tb_python.v      ; --            ; --                ; multiplication_tb_python  ;
+; EDA_TEST_BENCH_FILE                  ; tb_int_to_fp32.v                ; --            ; --                ; tb_int_to_fp32            ;
+; EDA_TEST_BENCH_FILE                  ; tb_lzc_miao_32.v                ; --            ; --                ; tb_lzc_miao_32            ;
+; EDA_TEST_BENCH_FILE                  ; tb_lzc8.v                       ; --            ; --                ; tb_lzc8                   ;
+; EDA_TEST_BENCH_FILE                  ; Multiplication__pipe_tb.v       ; --            ; --                ; Multiplication__pipe_tb   ;
+; EDA_TEST_BENCH_FILE                  ; dequantizer_block_tb.v          ; --            ; --                ; dequantizer_block_tb      ;
+; EDA_TEST_BENCH_FILE                  ; tb_int_to_fp32_pipeline.v       ; --            ; --                ; tb_int_to_fp32_pipeline   ;
+; EDA_TEST_BENCH_FILE                  ; dequantizer_block_pipe_tb.sv    ; --            ; --                ; dequantizer_block_pipe_tb ;
+; EDA_TEST_BENCH_FILE                  ; tb_dequantizer_parallel.sv      ; --            ; --                ; tb_dequantizer_parallel   ;
+; EDA_TEST_BENCH_MODULE_NAME           ; multiplication_tb               ; --            ; --                ; multiplication_tb         ;
+; EDA_TEST_BENCH_MODULE_NAME           ; multiplication_tb_python        ; --            ; --                ; multiplication_tb_python  ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb_int_to_fp32                  ; --            ; --                ; tb_int_to_fp32            ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb_lzc_miao_32                  ; --            ; --                ; tb_lzc_miao_32            ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb_lzc8                         ; --            ; --                ; tb_lzc8                   ;
+; EDA_TEST_BENCH_MODULE_NAME           ; Multiplication__pipe_tb         ; --            ; --                ; Multiplication__pipe_tb   ;
+; EDA_TEST_BENCH_MODULE_NAME           ; dequantizer_block_tb            ; --            ; --                ; dequantizer_block_tb      ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb_int_to_fp32_pipeline         ; --            ; --                ; tb_int_to_fp32_pipeline   ;
+; EDA_TEST_BENCH_MODULE_NAME           ; dequantizer_block_pipe_tb       ; --            ; --                ; dequantizer_block_pipe_tb ;
+; EDA_TEST_BENCH_MODULE_NAME           ; tb_dequantizer_parallel         ; --            ; --                ; tb_dequantizer_parallel   ;
+; EDA_TEST_BENCH_NAME                  ; multiplication_tb               ; --            ; --                ; eda_simulation            ;
+; EDA_TEST_BENCH_NAME                  ; multiplication_tb_python        ; --            ; --                ; eda_simulation            ;
+; EDA_TEST_BENCH_NAME                  ; tb_int_to_fp32                  ; --            ; --                ; eda_simulation            ;
+; EDA_TEST_BENCH_NAME                  ; tb_lzc_miao_32                  ; --            ; --                ; eda_simulation            ;
+; EDA_TEST_BENCH_NAME                  ; tb_lzc8                         ; --            ; --                ; eda_simulation            ;
+; EDA_TEST_BENCH_NAME                  ; Multiplication__pipe_tb         ; --            ; --                ; eda_simulation            ;
+; EDA_TEST_BENCH_NAME                  ; dequantizer_block_tb            ; --            ; --                ; eda_simulation            ;
+; EDA_TEST_BENCH_NAME                  ; tb_int_to_fp32_pipeline         ; --            ; --                ; eda_simulation            ;
+; EDA_TEST_BENCH_NAME                  ; dequantizer_block_pipe_tb       ; --            ; --                ; eda_simulation            ;
+; EDA_TEST_BENCH_NAME                  ; tb_dequantizer_parallel         ; --            ; --                ; eda_simulation            ;
+; EDA_TIME_SCALE                       ; 1 ps                            ; --            ; --                ; eda_simulation            ;
+; PARTITION_COLOR                      ; 16764057                        ; --            ; dequantizer_block ; Top                       ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; PLACEMENT_AND_ROUTING           ; --            ; dequantizer_block ; Top                       ;
+; PARTITION_NETLIST_TYPE               ; SOURCE                          ; --            ; dequantizer_block ; Top                       ;
+; PROJECT_OUTPUT_DIRECTORY             ; output_files                    ; --            ; --                ; --                        ;
+; TOP_LEVEL_ENTITY                     ; dequantizer_block               ; fp_multiplier ; --                ; --                        ;
++--------------------------------------+---------------------------------+---------------+-------------------+---------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------+
-; Flow Elapsed Time                                                                                                             ;
-+---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
-+---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:01     ; 1.0                     ; 4583 MB             ; 00:00:00                           ;
-; Fitter                    ; 00:00:04     ; 1.0                     ; 4885 MB             ; 00:00:02                           ;
-; Assembler                 ; 00:00:01     ; 1.0                     ; 4536 MB             ; 00:00:00                           ;
-; TimeQuest Timing Analyzer ; 00:00:01     ; 1.0                     ; 4602 MB             ; 00:00:00                           ;
-; EDA Netlist Writer        ; 00:00:00     ; 1.0                     ; 4510 MB             ; 00:00:00                           ;
-; Total                     ; 00:00:07     ; --                      ; --                  ; 00:00:02                           ;
-+---------------------------+--------------+-------------------------+---------------------+------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                        ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis ; 00:00:00     ; 1.0                     ; 4573 MB             ; 00:00:00                           ;
+; Total                ; 00:00:00     ; --                      ; --                  ; 00:00:00                           ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+----------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                        ;
-+---------------------------+------------------+-----------+------------+----------------+
-; Module Name               ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
-+---------------------------+------------------+-----------+------------+----------------+
-; Analysis & Synthesis      ; DESKTOP-GVVTBI7  ; Windows 7 ; 6.2        ; x86_64         ;
-; Fitter                    ; DESKTOP-GVVTBI7  ; Windows 7 ; 6.2        ; x86_64         ;
-; Assembler                 ; DESKTOP-GVVTBI7  ; Windows 7 ; 6.2        ; x86_64         ;
-; TimeQuest Timing Analyzer ; DESKTOP-GVVTBI7  ; Windows 7 ; 6.2        ; x86_64         ;
-; EDA Netlist Writer        ; DESKTOP-GVVTBI7  ; Windows 7 ; 6.2        ; x86_64         ;
-+---------------------------+------------------+-----------+------------+----------------+
++-----------------------------------------------------------------------------------+
+; Flow OS Summary                                                                   ;
++----------------------+------------------+-----------+------------+----------------+
+; Module Name          ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
++----------------------+------------------+-----------+------------+----------------+
+; Analysis & Synthesis ; Jiovana-lab215   ; Windows 7 ; 6.2        ; x86_64         ;
++----------------------+------------------+-----------+------------+----------------+
 
 
 ------------
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off fp_multiplier -c fp_multiplier
-quartus_fit --read_settings_files=off --write_settings_files=off fp_multiplier -c fp_multiplier
-quartus_asm --read_settings_files=off --write_settings_files=off fp_multiplier -c fp_multiplier
-quartus_sta fp_multiplier -c fp_multiplier
-quartus_eda --read_settings_files=off --write_settings_files=off fp_multiplier -c fp_multiplier
 
 
 

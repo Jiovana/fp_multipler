@@ -1,0 +1,129 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//File Name: Multiplication.v
+//Created By: Sheetal Swaroop Burada
+//Date: 30-04-2019
+//Project Name: Design of 32 Bit Floating Point ALU Based on Standard IEEE-754 in Verilog and its implementation on FPGA.
+//University: Dayalbagh Educational Institute
+
+//Modified by: Jiovana S. Gomes
+//Date:30-06-2025
+//B operand is a constant so many checks are not necessary
+//B is either:
+//0.00146484 = 0_01110101_01111111111111111100000 = 3abfffe0
+//0.00000238419 = 0_01101100_01000000000000000010011 = 36200013
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+module Multiplication(
+		input clk, rst,
+		input [31:0] a_operand,
+		input [31:0] b_operand,
+		output exception, overflow, underflow,
+		output [31:0] result
+		);
+
+wire sign,product_round,normalised,zero;
+wire [8:0] exponent,sum_exponent, exponent_raw;
+wire [22:0] product_mantissa;
+wire [23:0] operand_a,operand_b;
+wire [47:0] product,product_normalised; //48 Bits
+wire guard_bit, round_bit, sticky_bit, round_up;
+
+
+assign sign = a_operand[31] ^ b_operand[31];
+
+//Exception flag sets 1 if either one of the exponent is 255.
+assign exception = (&a_operand[30:23]);
+
+wire a_is_zero = (a_operand[30:23] == 8'd0) && (a_operand[22:0] == 23'd0);
+
+//Assigining significand values according to Hidden Bit.
+//If exponent is equal to zero then hidden bit will be 0 for that respective significand else it will be 1
+assign operand_a = (|a_operand[30:23]) ? {1'b1,a_operand[22:0]} : {1'b0,a_operand[22:0]};
+assign operand_b = {1'b1,b_operand[22:0]};
+
+/// first pipeline stage - just input manipulations
+reg [23:0] op_a_reg, op_b_reg;
+reg exception_reg, a_is_zero_reg, sign_reg;
+reg [7:0] a_exponent_reg, b_exponent_reg;
+
+always @ (posedge clk) begin
+    if (!rst) begin
+        op_a_reg = 'b0; /// a_op [23:0] - mantissas
+        op_b_reg = 'b0;
+        exception_reg = 'b0;
+        a_is_zero_reg = 'b0;
+        sign_reg = 'b0;
+        a_exponent_reg = 'b0; 
+        b_exponent_reg = 'b0;
+    end else begin
+        op_a_reg = operand_a;
+        op_b_reg = operand_b;
+        exception_reg = exception;
+        a_is_zero_reg = a_is_zero;
+        sign_reg = sign;
+        a_exponent_reg = a_operand[30:23]; 
+        b_exponent_reg = b_operand[30:23];
+    end
+end
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Calculating Product
+assign product = op_a_reg * op_b_reg;	
+
+
+assign sum_exponent = a_exponent_reg + b_exponent_reg;
+assign exponent_raw = sum_exponent - 8'd127;
+
+/// second pipeline stage - multiplication and sum
+reg [47:0] product_reg;
+reg [8:0] exponent_reg;
+reg a_is_zero_reg2, exception_reg2;
+
+always @(posedge clk) begin
+    if (!rst) begin
+        product_reg = 'b0;
+        exponent_reg = 'b0;
+        a_is_zero_reg2 = 'b0;
+        exception_reg2 = 'b0;
+    end else begin
+        product_reg = product;
+        exponent_reg = exponent_raw;
+        a_is_zero_reg2 = a_is_zero_reg;
+        exception_reg2 = exception_reg;
+    end
+end
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Assigning Normalised value based on 48th bit
+assign normalised = product_reg[47];	
+
+assign product_normalised = normalised ? product_reg : product_reg << 1;	
+
+// new rounding logic nearest to even
+assign guard_bit = product_normalised[23];
+assign round_bit = product_normalised[22];
+assign sticky_bit = |product_normalised[21:0];
+
+assign round_up = guard_bit & (round_bit | sticky_bit | product_normalised[24]);
+
+//Final Mantissa
+assign product_mantissa = product_normalised[46:24] + round_up;
+
+// Final exponent
+assign exponent = exponent_reg + normalised;
+
+assign zero = exception_reg2 ? 1'b0 : a_is_zero_reg2 ? 1'b1 : ((product_mantissa == 23'd0) && (exponent == 8'd0));
+
+assign overflow = ((exponent[8] & !exponent[7]) && !zero) ; //If overall exponent is greater than 255 then Overflow condition.
+//Exception Case when exponent reaches its maximum value that is 384.
+
+//If sum of both exponents is less than 127 then Underflow condition.
+assign underflow = ((exponent[8] & exponent[7]) && !zero) ? 1'b1 : 1'b0; 
+
+assign result = Exception ? 32'd0 : zero ? {sign,31'd0} : Overflow ? {sign,8'hFF,23'd0} : Underflow ? {sign,31'd0} : {sign,exponent[7:0],product_mantissa};
+
+
+endmodule

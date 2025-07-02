@@ -1,0 +1,104 @@
+`timescale 1ns / 1ps
+
+module dequantizer_block_pipe_tb;
+
+  reg clk;
+  reg rst;
+  reg [31:0] level_int;
+  reg is_weight;
+  wire [31:0] weight_fp_reg;
+  wire ovfl_reg, unfl_reg, excp_reg;
+
+  dequantizer_block dut (
+    .clk(clk),
+    .rst(rst),
+    .level_int(level_int),
+    .is_weight(is_weight),
+    .weight_fp_reg(weight_fp_reg),
+    .ovfl_reg(ovfl_reg),
+    .unfl_reg(unfl_reg),
+    .excp_reg(excp_reg)
+  );
+
+  // Clock
+  initial clk = 0;
+  always #5 clk = ~clk;
+
+  // Constants
+  localparam PIPELINE_LATENCY = 5;
+  localparam NUM_TESTS = 10;
+
+  // Input/Expected storage
+  typedef struct {
+    logic [31:0] level;
+    logic        is_weight;
+    logic [31:0] expected;
+  } testvec_t;
+
+  testvec_t testvecs [0:NUM_TESTS-1];
+  integer i, applied = 0, checked = 0;
+
+  // Output queue
+  logic [31:0] expected_q [0:NUM_TESTS-1];
+  logic [31:0] input_q    [0:NUM_TESTS-1];
+  logic [31:0] isw_q      [0:NUM_TESTS-1];
+
+  initial begin
+    // Initialize inputs
+    rst = 1;
+    level_int = 0;
+    is_weight = 0;
+    repeat (2) @(posedge clk);
+    rst = 0;
+
+    // Define test cases
+    testvecs[0] = {32'd14562, 1'b1, 32'h41aaa5e4}; // 21.33
+    testvecs[1] = {32'd4096,  1'b1, 32'h40bfffe0}; // 6.0
+    testvecs[2] = {32'd4096,  1'b0, 32'h3c200013}; // ~0.00977
+    testvecs[3] = {32'd0,     1'b1, 32'h00000000}; // 0
+    testvecs[4] = {-32'd1,    1'b1, 32'hbabfffe0}; // -0.00146484
+    testvecs[5] = {32'd1,     1'b0, 32'h36200013}; // Just qstep
+    testvecs[6] = {-32'd32768,1'b1, 32'hc1c00000}; // -46.875
+    testvecs[7] = {32'd8192,  1'b1, 32'h41400000}; // 12.0
+    testvecs[8] = {32'd16777215, 1'b1, 32'h4e7ffffe}; // upper weight
+    testvecs[9] = {-32'd8388608, 1'b0, 32'hc6200013}; // large neg
+
+    $display("\n[INFO] Starting pipelined dequantizer test...");
+
+    // Apply inputs every cycle
+    for (i = 0; i < NUM_TESTS + PIPELINE_LATENCY; i++) begin
+      @(negedge clk);
+      if (i < NUM_TESTS) begin
+        level_int <= testvecs[i].level;
+        is_weight <= testvecs[i].is_weight;
+        input_q[i] <= testvecs[i].level;
+        isw_q[i]   <= testvecs[i].is_weight;
+        expected_q[i] <= testvecs[i].expected;
+      end else begin
+        level_int <= 0;
+        is_weight <= 0;
+      end
+    end
+  end
+
+  // Output checker
+  initial begin
+    repeat (PIPELINE_LATENCY + 1) @(posedge clk); // Wait for pipeline fill
+
+    for (i = 0; i < NUM_TESTS; i=i+1) begin
+      @(posedge clk);
+      $display("Cycle %0d | Input: %0d | is_weight: %b | Output: %h | Expected: %h | Ovf: %b | Unf: %b | Exc: %b",
+                i, input_q[i], isw_q[i], weight_fp_reg, expected_q[i], ovfl_reg, unfl_reg, excp_reg);
+      if (weight_fp_reg !== expected_q[i]) begin
+        $display("[FAIL] ❌ Output mismatch at test %0d! Got %h, Expected %h",
+                  i, weight_fp_reg, expected_q[i]);
+      end else begin
+        $display("[PASS] ✅");
+      end
+    end
+
+    $display("\n[INFO] Pipelined dequantizer block test completed.");
+    $stop;
+  end
+
+endmodule

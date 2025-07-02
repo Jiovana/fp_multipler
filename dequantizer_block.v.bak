@@ -1,0 +1,41 @@
+module dequantizer_block {
+    input clk, rst,
+    input [31:0] level_int,
+    input is_weight,
+    output [31:0] weight_fp,
+    output ovfl, unfl, excp
+}
+
+    wire  [31:0] level_fp, qstep;
+    wire  level_exception, level_overflow, level_underflow;
+
+    int_to_fp32 uut (
+        .int_in(level_int),
+        .Exception(level_exception),
+        .Overflow(level_overflow),
+        .Underflow(level_underflow),
+        .result(level_fp)
+    );
+
+    reg [31:0] level_fp_reg;
+    always @(posedge clk) begin
+        if (!rst)
+            level_fp_reg = 'b0;
+        else
+            level_fp_reg = level_fp;
+    end
+
+    assign qstep = (is_weight) ? 32'h3abfffe0 : 32'h36200013;
+
+  Multiplication_pipeline multiplier (
+    .clk(clk),
+    .rst(rst),
+    .a_operand(level_fp_reg),
+    .b_operand(qstep),
+    .exception(excp),
+    .overflow(ovfl),
+    .underflow(unfl),
+    .result(weight_fp)
+  );
+
+endmodule

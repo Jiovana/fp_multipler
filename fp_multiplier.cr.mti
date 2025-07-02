@@ -1,0 +1,125 @@
+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_pipe_tb.sv {1 {vlog -work work -sv C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_pipe_tb.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module dequantizer_block_pipe_tb
+
+Top level modules:
+	dequantizer_block_pipe_tb
+
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_tb.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_tb.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module dequantizer_block_tb
+
+Top level modules:
+	dequantizer_block_tb
+
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_int_to_fp32.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_int_to_fp32.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_int_to_fp32
+
+Top level modules:
+	tb_int_to_fp32
+
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/int_to_fp32_pipeline.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/int_to_fp32_pipeline.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module int_to_fp32_pipeline
+
+Top level modules:
+	int_to_fp32_pipeline
+
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_lzc8.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_lzc8.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_lzc8
+
+Top level modules:
+	tb_lzc8
+
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Multiplication
+
+Top level modules:
+	Multiplication
+
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_lzc_miao_32.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_lzc_miao_32.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_lzc_miao_32
+
+Top level modules:
+	tb_lzc_miao_32
+
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/int_to_fp32.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/int_to_fp32.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module int_to_fp32
+
+Top level modules:
+	int_to_fp32
+
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_int_to_fp32_pipeline.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_int_to_fp32_pipeline.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_int_to_fp32_pipeline
+
+Top level modules:
+	tb_int_to_fp32_pipeline
+
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/fpmult2.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/fpmult2.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Multiplication2
+
+Top level modules:
+	Multiplication2
+
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_tb.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_tb.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Multiplication_pipe_tb
+
+Top level modules:
+	Multiplication_pipe_tb
+
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/miao_lzc32.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/miao_lzc32.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module lzc_miao_8_old
+-- Compiling module lzc_miao_16
+-- Compiling module lzc_miao_8
+-- Compiling module miao_lzc32
+
+Top level modules:
+	lzc_miao_8_old
+	lzc_miao_16
+	miao_lzc32
+
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_pipeline.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_pipeline.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Multiplication_pipeline
+
+Top level modules:
+	Multiplication_pipeline
+
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_tb_python.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_tb_python.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module multiplication_tb_python
+
+Top level modules:
+	multiplication_tb_python
+
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module dequantizer_block
+
+Top level modules:
+	dequantizer_block
+
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication__pipe_tb.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication__pipe_tb.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Multiplication__pipe_tb
+
+Top level modules:
+	Multiplication__pipe_tb
+
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_parallel.sv {1 {vlog -work work -sv C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_parallel.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_dequantizer_parallel
+
+Top level modules:
+	tb_dequantizer_parallel
+
+} {} {}}

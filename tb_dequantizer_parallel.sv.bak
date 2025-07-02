@@ -1,0 +1,151 @@
+// File: tb_dequantizer_parallel.sv
+// Description: SystemVerilog testbench to automatically test a parallel dequantizer architecture
+//              using multiple CSV files as test vectors (800k entries total)
+// Author: ChatGPT
+
+`timescale 1ns/1ps
+
+module tb_dequantizer_parallel;
+
+  // Parameters
+  parameter int NUM_BLOCKS = 8;
+  parameter string FILE_PREFIX = "test_vectors/test_vectors_"; // e.g., data_block_0.csv to data_block_7.csv
+  parameter string FILE_SUFFIX [8] = {"alexnet", "bmjsh", "cheng", "deeplab", "inception", "ssd", "unet", "yolo11s"};
+  parameter int PIPELINE_DELAY = 6; // adjust as needed
+
+  typedef struct packed {
+    int level;
+    bit is_weight;
+    logic [31:0] expected_result;
+  } dequant_test_vector_t;
+
+  // Signals
+  logic clk = 0;
+  logic rst = 0;
+  logic [31:0] level_int   [NUM_BLOCKS];
+  logic        is_weight   [NUM_BLOCKS];
+  logic [31:0] weight_fp   [NUM_BLOCKS];
+  logic        ovfl        [NUM_BLOCKS];
+  logic        unfl        [NUM_BLOCKS];
+  logic        excp        [NUM_BLOCKS];
+
+  // DUT instantiation (parameterized block array)
+  generate
+    for (genvar i = 0; i < NUM_BLOCKS; i++) begin : blocks
+      dequantizer_block dut (
+        .clk(clk),
+        .rst(rst),
+        .level_int(level_int[i]),
+        .is_weight(is_weight[i]),
+        .weight_fp_reg(weight_fp[i]),
+        .ovfl_reg(ovfl[i]),
+        .unfl_reg(unfl[i]),
+        .excp_reg(excp[i])
+      );
+    end
+  endgenerate
+
+  // Clock generation
+  always #5 clk = ~clk;
+
+  // Test data storage
+  dequant_test_vector_t vectors   [NUM_BLOCKS][$];
+  dequant_test_vector_t pipeline  [NUM_BLOCKS][PIPELINE_DELAY];
+
+  // CSV parsing utility
+  function automatic dequant_test_vector_t parse_csv_line(string line);
+    dequant_test_vector_t vec;
+    int level;
+    int is_weight;
+    string hex_str;
+    $sscanf(line, "%d,%d,%s", level, is_weight, hex_str);
+    vec.level = level;
+    vec.is_weight = is_weight;
+    vec.expected_result = hex_str.atoi();
+    return vec;
+  endfunction
+
+  // Initial block: Load all files
+  initial begin
+    for (int i = 0; i < NUM_BLOCKS; i++) begin
+      string path = {FILE_PREFIX, FILE_SUFFIX[i], ".csv"};
+      $display("[INFO] Loading file: %s", path);
+      int fd = $fopen(path, "r");
+      if (!fd) begin
+        $fatal("Failed to open file: %s", path);
+      end
+      string line;
+      // Skip header
+      void'($fgets(line, fd));
+      while ($fgets(line, fd)) begin
+        vectors[i].push_back(parse_csv_line(line));
+      end
+      $fclose(fd);
+    end
+    $display("[INFO] Loaded all test data.");
+  end
+
+  // Main test process
+  initial begin
+    rst = 1;
+    repeat (3) @(negedge clk);
+    rst = 0;
+
+    int idx[NUM_BLOCKS] = '{default:0};
+    int cycle = 0;
+    int errors = 0;
+
+    forever begin
+      @(negedge clk);
+      cycle++;
+
+      // Feed inputs
+      for (int i = 0; i < NUM_BLOCKS; i++) begin
+        if (idx[i] < vectors[i].size()) begin
+          level_int[i]   = vectors[i][idx[i]].level;
+          is_weight[i]   = vectors[i][idx[i]].is_weight;
+        end else begin
+          level_int[i]   = '0;
+          is_weight[i]   = '0;
+        end
+      end
+
+      // Shift and store outputs for checking
+      for (int i = 0; i < NUM_BLOCKS; i++) begin
+        pipeline[i].pop_front();
+        if (idx[i] < vectors[i].size()) begin
+          pipeline[i].push_back(vectors[i][idx[i]]);
+        end else begin
+          pipeline[i].push_back('{default:0});
+        end
+      end
+
+      // Check outputs
+      if (cycle >= PIPELINE_DELAY) begin
+        for (int i = 0; i < NUM_BLOCKS; i++) begin
+          if (pipeline[i][0].expected_result !== 32'hx && weight_fp[i] !== pipeline[i][0].expected_result) begin
+            $display("[FAIL][Cycle %0d][Block %0d] Level=%0d | is_weight=%b | Got=%h | Expected=%h",
+                     cycle, i, pipeline[i][0].level, pipeline[i][0].is_weight,
+                     weight_fp[i], pipeline[i][0].expected_result);
+            errors++;
+          end
+        end
+      end
+
+      // Move index
+      for (int i = 0; i < NUM_BLOCKS; i++) begin
+        if (idx[i] < vectors[i].size())
+          idx[i]++;
+      end
+
+      // Stop when done
+      bit done = 1;
+      for (int i = 0; i < NUM_BLOCKS; i++)
+        if (idx[i] < vectors[i].size()) done = 0;
+      if (done && cycle > vectors[0].size() + PIPELINE_DELAY) begin
+        $display("\n[INFO] Test completed with %0d errors.", errors);
+        $finish;
+      end
+    end
+  end
+endmodule

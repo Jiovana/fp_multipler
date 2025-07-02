@@ -1,0 +1,68 @@
+`timescale 1ns / 1ps
+
+module dequantizer_block_tb;
+
+  reg clk;
+  reg rst;
+  reg [31:0] level_int;
+  reg is_weight;
+  wire [31:0] weight_fp_reg;
+  wire ovfl_reg, unfl_reg, excp_reg;
+
+  // Instantiate the DUT
+  dequantizer_block dut (
+    .clk(clk),
+    .rst(rst),
+    .level_int(level_int),
+    .is_weight(is_weight),
+    .weight_fp_reg(weight_fp_reg),
+    .ovfl_reg(ovfl_reg),
+    .unfl_reg(unfl_reg),
+    .excp_reg(excp_reg)
+  );
+
+  // Clock generation
+  initial clk = 0;
+  always #5 clk = ~clk;
+
+  // Task to apply a single test
+  task apply_test(input [31:0] int_level, input bit weight_flag, input [31:0] expected_result);
+    begin
+      @(negedge clk);
+      level_int = int_level;
+      is_weight = weight_flag;
+      @(negedge clk);
+      rst = 1;
+      repeat (5) @(posedge clk); // wait for pipeline delay
+      $display("Input Level: %0d | Is Weight: %0b | Output: %h | Expected: %h | Ovf: %b | Unf: %b | Exc: %b",
+                int_level, weight_flag, weight_fp_reg, expected_result, ovfl_reg, unfl_reg, excp_reg);
+      if (weight_fp_reg !== expected_result)
+        $display("[ERROR] Mismatch for input %0d", int_level);
+    end
+  endtask
+
+  initial begin
+    // Initialize
+    rst = 0;
+    level_int = 0;
+    is_weight = 0;
+    #20;
+
+    // Apply reset
+    @(negedge clk);
+    rst = 1;
+    @(negedge clk);
+    rst = 0;
+
+    // Test cases
+    apply_test(32'd14562, 1'b1, 32'h41aa4b02);  // weight = 0.00146484 * 14562 ~ 21.33
+    apply_test(32'd4096, 1'b1, 32'h41a00000);   // 0.00146484 * 4096 = 6.0
+    apply_test(32'd4096, 1'b0, 32'h3e800000);   // 0.00000238419 * 4096 = 0.00977...
+    apply_test(32'd0,    1'b1, 32'h00000000);   // 0 * anything = 0
+    apply_test(32'hFFFFFFFF, 1'b1, 32'hc1aa4b02); // -1 * 0.00146484 = ~ -0.00146484
+
+    // Done
+    $finish;
+  end
+
+endmodule

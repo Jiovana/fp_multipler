@@ -9,13 +9,13 @@ module int_to_fp32 (
 wire        sign;
 wire [31:0] abs_val;
 wire [4:0]  leading_zeros;
-wire [7:0]  exponent_raw;
+wire [8:0]  exponent_raw;
 wire [22:0] mantissa;
 wire        round_up, guard_bit, round_bit, sticky_bit;
 wire [55:0] shifted_val;
 wire [31:0] int_abs_shifted;
 wire [23:0] mantissa_round, mantissa_ext;
-wire [7:0]  exponent_final;
+wire [8:0]  exponent_final;
 wire        mantissa_overflow;
 wire        is_zero;
 wire [4:0] out_lzc;
@@ -42,7 +42,7 @@ miao_lzc32 lzc (
 assign leading_zeros = out_lzc;
 
 assign num_bits = 'd32 - leading_zeros;
-assign num_exp = num_bits - 1;
+assign num_exp = num_bits - 'b1;
 
 // Shifted value aligned to MSB for mantissa extraction
 assign int_abs_shifted = abs_val << leading_zeros;
@@ -72,11 +72,11 @@ assign exponent_final = is_zero ? 8'd0 : exponent_raw;
 
 // Exception/Overflow/Underflow logic
 assign Exception = 1'b0; // Not used for integers
-assign Overflow  = (exponent_final >= 8'd255) && !is_zero;
-assign Underflow = (abs_val != 0) && (exponent_final == 0);
+assign Overflow  = (exponent_final[8] & !exponent_final[7]) && !is_zero;
+assign Underflow = !is_zero && (~|exponent_final);
 assign result    = is_zero   ? 32'd0 :
                    Overflow  ? {sign, 8'hFF, 23'd0} :
                    Underflow ? {sign, 31'd0} :
-                   {sign, exponent_final, mantissa_piece};
+                   {sign, exponent_final[7:0], mantissa};
 
 endmodule

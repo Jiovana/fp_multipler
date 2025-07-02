@@ -10,13 +10,25 @@
 # ** Warning: Copied C:\altera\13.0sp1\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini.
 #          Updated modelsim.ini.
 # 
-# vlog -vlog01compat -work work +incdir+C:/Users/Jiovana/Documents/FP_multiplier {C:/Users/Jiovana/Documents/FP_multiplier/int_to_fp32.v}
+# vlog -vlog01compat -work work +incdir+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler {C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/int_to_fp32_pipeline.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
-# -- Compiling module int_to_fp32
+# -- Compiling module int_to_fp32_pipeline
 # 
 # Top level modules:
-# 	int_to_fp32
-# vlog -vlog01compat -work work +incdir+C:/Users/Jiovana/Documents/FP_multiplier {C:/Users/Jiovana/Documents/FP_multiplier/miao_lzc32.v}
+# 	int_to_fp32_pipeline
+# vlog -vlog01compat -work work +incdir+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler {C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module dequantizer_block
+# 
+# Top level modules:
+# 	dequantizer_block
+# vlog -vlog01compat -work work +incdir+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler {C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_pipeline.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module Multiplication_pipeline
+# 
+# Top level modules:
+# 	Multiplication_pipeline
+# vlog -vlog01compat -work work +incdir+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler {C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/miao_lzc32.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 # -- Compiling module lzc_miao_8_old
 # -- Compiling module lzc_miao_16
@@ -28,19 +40,22 @@
 # 	lzc_miao_16
 # 	miao_lzc32
 # 
-# vlog -vlog01compat -work work +incdir+C:/Users/Jiovana/Documents/FP_multiplier {C:/Users/Jiovana/Documents/FP_multiplier/tb_int_to_fp32.v}
+# vlog -sv -work work +incdir+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler {C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_pipe_tb.sv}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
-# -- Compiling module tb_int_to_fp32
+# -- Compiling module dequantizer_block_pipe_tb
 # 
 # Top level modules:
-# 	tb_int_to_fp32
+# 	dequantizer_block_pipe_tb
 # 
-# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneiii_ver -L rtl_work -L work -voptargs="+acc"  tb_int_to_fp32
-# vsim -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneiii_ver -L rtl_work -L work -voptargs=\"+acc\" -t 1ps tb_int_to_fp32 
-# Loading work.tb_int_to_fp32
-# Loading work.int_to_fp32
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneiii_ver -L rtl_work -L work -voptargs="+acc"  dequantizer_block_pipe_tb
+# vsim -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneiii_ver -L rtl_work -L work -voptargs=\"+acc\" -t 1ps dequantizer_block_pipe_tb 
+# Loading sv_std.std
+# Loading work.dequantizer_block_pipe_tb
+# Loading work.dequantizer_block
+# Loading work.int_to_fp32_pipeline
 # Loading work.miao_lzc32
 # Loading work.lzc_miao_8
+# Loading work.Multiplication_pipeline
 # 
 # add wave *
 # view structure
@@ -48,24 +63,28 @@
 # view signals
 # .main_pane.objects.interior.cs.body.tree
 # run -all
-# Starting IntToFloat32 tests...
 # 
-# int_in = 0 => result = 00000000 | Sign = 0, Exp =   0, Man =       0 | OF = 0, UF = 0, EXC = 0
-# int_in = 1 => result = 3f800000 | Sign = 0, Exp = 127, Man =       0 | OF = 0, UF = 0, EXC = 0
-# int_in = 4294967291 => result = c0a00000 | Sign = 1, Exp = 129, Man = 2097152 | OF = 0, UF = 0, EXC = 0
-# int_in = 2 => result = 40000000 | Sign = 0, Exp = 128, Man =       0 | OF = 0, UF = 0, EXC = 0
-# int_in = 4294967294 => result = c0000000 | Sign = 1, Exp = 128, Man =       0 | OF = 0, UF = 0, EXC = 0
-# int_in = 3 => result = 40400000 | Sign = 0, Exp = 128, Man = 4194304 | OF = 0, UF = 0, EXC = 0
-# int_in = 255 => result = 437f0000 | Sign = 0, Exp = 134, Man = 8323072 | OF = 0, UF = 0, EXC = 0
-# int_in = 1023 => result = 447fc000 | Sign = 0, Exp = 136, Man = 8372224 | OF = 0, UF = 0, EXC = 0
-# int_in = 8388607 => result = 4afffffe | Sign = 0, Exp = 149, Man = 8388606 | OF = 0, UF = 0, EXC = 0
-# int_in = 8388608 => result = 4b000000 | Sign = 0, Exp = 150, Man =       0 | OF = 0, UF = 0, EXC = 0
-# int_in = 2147483647 => result = 4f7fffff | Sign = 0, Exp = 158, Man = 8388607 | OF = 0, UF = 0, EXC = 0
-# int_in = 2147483648 => result = cf000000 | Sign = 1, Exp = 158, Man =       0 | OF = 0, UF = 0, EXC = 0
-# int_in = 16777215 => result = 4b7fffff | Sign = 0, Exp = 150, Man = 8388607 | OF = 0, UF = 0, EXC = 0
-# int_in = 16777216 => result = 4b800000 | Sign = 0, Exp = 151, Man =       0 | OF = 0, UF = 0, EXC = 0
+# [INFO] Starting pipelined dequantizer test...
 # 
-# Finished testing.
-# Break in Module tb_int_to_fp32 at C:/Users/Jiovana/Documents/FP_multiplier/tb_int_to_fp32.v line 47
-# Simulation Breakpoint: Break in Module tb_int_to_fp32 at C:/Users/Jiovana/Documents/FP_multiplier/tb_int_to_fp32.v line 47
-# MACRO ./fp_multiplier_run_msim_rtl_verilog.do PAUSED at line 18
+# Cycle 0 | Input: 14562 | Is_Weight: 1 | Output: 41aaa5e4 | Expected: 41aaa5e4 | Ovf: 0 | Unf: 0 | Exc: 0
+#   [PASS]
+# Cycle 1 | Input: 4096 | Is_Weight: 1 | Output: 40bfffe0 | Expected: 40bfffe0 | Ovf: 0 | Unf: 0 | Exc: 0
+#   [PASS]
+# Cycle 2 | Input: 4096 | Is_Weight: 0 | Output: 3c200013 | Expected: 3c200013 | Ovf: 0 | Unf: 0 | Exc: 0
+#   [PASS]
+# Cycle 3 | Input: 0 | Is_Weight: 1 | Output: 00000000 | Expected: 00000000 | Ovf: 0 | Unf: 0 | Exc: 0
+#   [PASS]
+# Cycle 4 | Input: 4294967295 | Is_Weight: 1 | Output: babfffe0 | Expected: babfffe0 | Ovf: 0 | Unf: 0 | Exc: 0
+#   [PASS]
+# Cycle 5 | Input: 1 | Is_Weight: 0 | Output: 36200013 | Expected: 36200013 | Ovf: 0 | Unf: 0 | Exc: 0
+#   [PASS]
+# Cycle 6 | Input: 8192 | Is_Weight: 1 | Output: 413fffe0 | Expected: 413fffe0 | Ovf: 0 | Unf: 0 | Exc: 0
+#   [PASS]
+# Cycle 7 | Input: 4294950912 | Is_Weight: 1 | Output: c1bfffe0 | Expected: c1bfffe0 | Ovf: 0 | Unf: 0 | Exc: 0
+#   [PASS]
+# 
+# [INFO] Dequantizer pipelined test complete.
+# 
+# Break in Module dequantizer_block_pipe_tb at C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_pipe_tb.sv line 87
+# Simulation Breakpoint: Break in Module dequantizer_block_pipe_tb at C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_pipe_tb.sv line 87
+# MACRO ./fp_multiplier_run_msim_rtl_verilog.do PAUSED at line 20
