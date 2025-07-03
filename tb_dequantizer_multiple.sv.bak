@@ -1,0 +1,157 @@
+// Testbench for parallel dequantizer_block instances
+`timescale 1ns/1ps
+
+module tb_dequantizer_parallel;
+  import "DPI-C" function int sscanf(input string s, input string format, output int d, output int b);
+
+  parameter int NUM_UNITS = 2;
+  parameter string FILE_NAMES[NUM_UNITS] = '{
+    "file0.csv", "file1.csv", "file2.csv", "file3.csv",
+    "file4.csv", "file5.csv", "file6.csv", "file7.csv"
+  };
+  
+  parameter int MAX_ENTRIES = 100_000;
+  parameter int PIPELINE_LATENCY = 5; // Adjust based on design depth
+
+  typedef struct packed {
+    logic [31:0] level;
+    logic        is_weight;
+    logic [31:0] expected;
+  } test_vector_t;
+
+  test_vector_t test_vectors[NUM_UNITS][MAX_ENTRIES];
+  int num_entries[NUM_UNITS];
+
+  logic clk = 0;
+  logic rst = 0;
+
+  always #5 clk = ~clk;
+
+  // DUT Signals
+  logic [31:0] level_int    [NUM_UNITS];
+  logic        is_weight    [NUM_UNITS];
+  logic [31:0] weight_fp    [NUM_UNITS];
+  logic        ovfl         [NUM_UNITS];
+  logic        unfl         [NUM_UNITS];
+  logic        excp         [NUM_UNITS];
+
+  // Instantiating NUM_UNITS dequantizer blocks
+  genvar i;
+  generate
+    for (i = 0; i < NUM_UNITS; i++) begin : deq_units
+      dequantizer_block dut (
+        .clk(clk),
+        .rst(rst),
+        .level_int(level_int[i]),
+        .is_weight(is_weight[i]),
+        .weight_fp_reg(weight_fp[i]),
+        .ovfl_reg(ovfl[i]),
+        .unfl_reg(unfl[i]),
+        .excp_reg(excp[i])
+      );
+    end
+  endgenerate
+
+  // Initialize test vectors from CSV files
+  initial begin : LOAD_FILES
+    string line, hex_str;
+    int fd, dummy;
+    int level_val, weight_flag, expected_val;
+
+    for (int j = 0; j < NUM_UNITS; j++) begin
+      num_entries[j] = 0;
+      $display("[INFO] Loading %s", FILE_NAMES[j]);
+      fd = $fopen(FILE_NAMES[j], "r");
+      if (!fd) begin
+        $error("[ERROR] Failed to open file %s", FILE_NAMES[j]);
+        $finish;
+      end
+
+      // Skip header
+      line = "";
+      void'($fgets(line, fd));
+
+      while (!$feof(fd) && num_entries[j] < MAX_ENTRIES) begin
+        dummy = $fscanf(fd, "%d,%d,%s\n", level_val, weight_flag, hex_str);
+        if (dummy == 3) begin
+          dummy = $sscanf(hex_str, "0x%x", expected_val);
+          if (dummy == 1) begin
+            test_vectors[j][num_entries[j]].level     = level_val;
+            test_vectors[j][num_entries[j]].is_weight = weight_flag;
+            test_vectors[j][num_entries[j]].expected  = expected_val;
+            num_entries[j]++;
+          end
+        end
+      end
+
+      $fclose(fd);
+      $display("[INFO] Loaded %0d entries from %s", num_entries[j], FILE_NAMES[j]);
+    end
+  end
+
+  // Apply test inputs and check outputs
+  initial begin : MAIN_SIM
+    automatic int cycle = 0;
+    automatic int errors = 0;
+    rst = 0;
+    repeat (3) @(negedge clk);
+    rst = 1;
+    repeat (1) @(negedge clk);
+
+    for (int idx = 0; idx < MAX_ENTRIES; idx++) begin
+      // Apply all unit inputs at once
+      for (int j = 0; j < NUM_UNITS; j++) begin
+        if (idx < num_entries[j]) begin
+          level_int[j] = test_vectors[j][idx].level;
+          is_weight[j] = test_vectors[j][idx].is_weight;
+        end else begin
+          level_int[j] = '0;
+          is_weight[j] = '0;
+        end
+      end
+      @(negedge clk);
+
+      // Check outputs for past inputs
+      if (idx >= PIPELINE_LATENCY) begin
+        for (int j = 0; j < NUM_UNITS; j++) begin
+          int check_idx = idx - PIPELINE_LATENCY;
+          if (check_idx < num_entries[j]) begin
+            test_vector_t vec = test_vectors[j][check_idx];
+            if (weight_fp[j] !== vec.expected) begin
+              $display("[FAIL] Cycle %0d | Unit %0d | Input: %0d | is_weight: %b | Got: %h | Expected: %h",
+                       cycle, j, vec.level, vec.is_weight, weight_fp[j], vec.expected);
+              errors++;
+            end
+          end
+        end
+      end
+      cycle++;
+    end
+
+    // Final drain cycles to check remaining pipeline values
+    repeat (PIPELINE_LATENCY) begin
+      @(negedge clk);
+      for (int j = 0; j < NUM_UNITS; j++) begin
+        int check_idx = MAX_ENTRIES - PIPELINE_LATENCY + cycle - MAX_ENTRIES;
+        if (check_idx >= 0 && check_idx < num_entries[j]) begin
+          test_vector_t vec = test_vectors[j][check_idx];
+          if (weight_fp[j] !== vec.expected) begin
+            $display("[FAIL] Final | Unit %0d | Input: %0d | is_weight: %b | Got: %h | Expected: %h",
+                     j, vec.level, vec.is_weight, weight_fp[j], vec.expected);
+            errors++;
+          end
+        end
+      end
+      cycle++;
+    end
+
+    if (errors == 0) begin
+      $display("\n[PASS] All tests passed.");
+    end else begin
+      $display("\n[FAIL] %0d mismatches found.", errors);
+    end
+
+    $stop;
+  end
+
+endmodule

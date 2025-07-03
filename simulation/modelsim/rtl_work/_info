@@ -4,10 +4,10 @@ K3
 cModel Technology
 Z0 dC:\Users\Jiovana\Documents\FP_multiplier\fp_multipler\simulation\modelsim
 vdequantizer_block
-I^zl1@8TPdIzW3TgoJFfnj1
-V;6kdWSc9gCI9=84EX9b4b3
+IFnbB0Jf;k89U7BV?Q^0N00
+Vl[zjBbfJa>[0gk6^mYnBG3
 Z1 dC:\Users\Jiovana\Documents\FP_multiplier\fp_multipler\simulation\modelsim
-w1751482243
+w1751562928
 8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block.v
 FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block.v
 L0 1
@@ -17,35 +17,12 @@ r1
 Z3 o-vlog01compat -work work -O0
 Z4 !s92 -vlog01compat -work work +incdir+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler -O0
 !i10b 1
-!s100 6Ykf8FG:ZBB9`zmX5AfU12
+!s100 cXQU1CJOX>7YAQ:RmB_d20
 !s85 0
-!s108 1751482561.049000
+!s108 1751573284.028000
 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block.v|
 !s101 -O0
-vdequantizer_block_pipe_tb
-DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
-!i10b 1
-!s100 6bM97c4iTmOOFajPj7@mH0
-IiM8L`00BQ;=Cj?5ZelDLQ2
-V>j]V>mZZFYn[:?4;BYPfO0
-!s105 dequantizer_block_pipe_tb_sv_unit
-S1
-R1
-w1751482544
-8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_pipe_tb.sv
-FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_pipe_tb.sv
-L0 3
-R2
-r1
-!s85 0
-31
-!s108 1751482561.143000
-!s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_pipe_tb.sv|
-!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_pipe_tb.sv|
-!s101 -O0
-o-sv -work work -O0
-!s92 -sv -work work +incdir+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler -O0
 vint_to_fp32_pipeline
 I59Y]SNC>nCSKQ1=c4hjF_1
 VX=a?KI58T7[^n6d_E5EKW3
@@ -62,7 +39,7 @@ R4
 !i10b 1
 !s100 DGSUXB_GN2zCeXM`HBJ[_0
 !s85 0
-!s108 1751482561.033000
+!s108 1751573283.997000
 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/int_to_fp32_pipeline.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/int_to_fp32_pipeline.v|
 !s101 -O0
@@ -77,7 +54,7 @@ L0 40
 R2
 r1
 31
-Z8 !s108 1751482561.111000
+Z8 !s108 1751573284.076000
 Z9 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/miao_lzc32.v|
 Z10 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/miao_lzc32.v|
 R3
@@ -163,7 +140,30 @@ n@multiplication_pipeline
 !i10b 1
 !s100 19Co;RTBkT^j<PkXT>PRB2
 !s85 0
-!s108 1751482561.080000
+!s108 1751573284.044000
 !s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_pipeline.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_pipeline.v|
 !s101 -O0
+vtb_dequantizer_multiple
+DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+!i10b 1
+!s100 <I[e3bn5V2FYONS6cl;DH3
+Iedkj6K10`NfCN;]6IT0fF1
+VGR:Ih=<R_h^L3=b3lA3Va0
+!s105 tb_dequantizer_multiple_sv_unit
+S1
+R1
+w1751573245
+8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv
+FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv
+L0 4
+R2
+r1
+!s85 0
+31
+!s108 1751573284.107000
+!s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv|
+!s101 -O0
+o-sv -work work -O0
+!s92 -sv -work work +incdir+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler -O0

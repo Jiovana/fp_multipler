@@ -40,51 +40,31 @@
 # 	lzc_miao_16
 # 	miao_lzc32
 # 
-# vlog -sv -work work +incdir+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler {C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_pipe_tb.sv}
+# vlog -sv -work work +incdir+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler {C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
-# -- Compiling module dequantizer_block_pipe_tb
+# -- Compiling module tb_dequantizer_multiple
 # 
 # Top level modules:
-# 	dequantizer_block_pipe_tb
+# 	tb_dequantizer_multiple
 # 
-# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneiii_ver -L rtl_work -L work -voptargs="+acc"  dequantizer_block_pipe_tb
-# vsim -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneiii_ver -L rtl_work -L work -voptargs=\"+acc\" -t 1ps dequantizer_block_pipe_tb 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneiii_ver -L rtl_work -L work -voptargs="+acc"  tb_dequantizer_multiple
+# vsim -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneiii_ver -L rtl_work -L work -voptargs=\"+acc\" -t 1ps tb_dequantizer_multiple 
 # Loading sv_std.std
-# Loading work.dequantizer_block_pipe_tb
+# Loading work.tb_dequantizer_multiple
 # Loading work.dequantizer_block
 # Loading work.int_to_fp32_pipeline
 # Loading work.miao_lzc32
 # Loading work.lzc_miao_8
 # Loading work.Multiplication_pipeline
+# ** Warning: (vsim-PLI-3028) C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv(194): $sdf_annotate : 4th argument (log file) is not supported.
 # 
-# add wave *
-# view structure
-# .main_pane.structure.interior.cs.body.struct
-# view signals
-# .main_pane.objects.interior.cs.body.tree
-# run -all
+#         Region: /tb_dequantizer_multiple
+# ** Error: (vsim-SDF-3894) dequantizer_x1.sdf: Compiled SDF file was not found.
 # 
-# [INFO] Starting pipelined dequantizer test...
+# ** Error: (vsim-3043) C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv(189): Unresolved reference to 'tb_dequantizer_parallel'.
 # 
-# Cycle 0 | Input: 14562 | Is_Weight: 1 | Output: 41aaa5e4 | Expected: 41aaa5e4 | Ovf: 0 | Unf: 0 | Exc: 0
-#   [PASS]
-# Cycle 1 | Input: 4096 | Is_Weight: 1 | Output: 40bfffe0 | Expected: 40bfffe0 | Ovf: 0 | Unf: 0 | Exc: 0
-#   [PASS]
-# Cycle 2 | Input: 4096 | Is_Weight: 0 | Output: 3c200013 | Expected: 3c200013 | Ovf: 0 | Unf: 0 | Exc: 0
-#   [PASS]
-# Cycle 3 | Input: 0 | Is_Weight: 1 | Output: 00000000 | Expected: 00000000 | Ovf: 0 | Unf: 0 | Exc: 0
-#   [PASS]
-# Cycle 4 | Input: 4294967295 | Is_Weight: 1 | Output: babfffe0 | Expected: babfffe0 | Ovf: 0 | Unf: 0 | Exc: 0
-#   [PASS]
-# Cycle 5 | Input: 1 | Is_Weight: 0 | Output: 36200013 | Expected: 36200013 | Ovf: 0 | Unf: 0 | Exc: 0
-#   [PASS]
-# Cycle 6 | Input: 8192 | Is_Weight: 1 | Output: 413fffe0 | Expected: 413fffe0 | Ovf: 0 | Unf: 0 | Exc: 0
-#   [PASS]
-# Cycle 7 | Input: 4294950912 | Is_Weight: 1 | Output: c1bfffe0 | Expected: c1bfffe0 | Ovf: 0 | Unf: 0 | Exc: 0
-#   [PASS]
-# 
-# [INFO] Dequantizer pipelined test complete.
-# 
-# Break in Module dequantizer_block_pipe_tb at C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_pipe_tb.sv line 87
-# Simulation Breakpoint: Break in Module dequantizer_block_pipe_tb at C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block_pipe_tb.sv line 87
-# MACRO ./fp_multiplier_run_msim_rtl_verilog.do PAUSED at line 20
+#         Region: /tb_dequantizer_multiple
+# Error loading design
+# Error: Error loading design 
+#        Pausing macro execution 
+# MACRO ./fp_multiplier_run_msim_rtl_verilog.do PAUSED at line 15

@@ -1,5 +1,6 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="fp_multiplier">
+		<CBX_INST_ENTRY INSTANCE_NAME="|dequantizer_block|Multiplication_pipeline:multiplier|lpm_mult:Mult0" CBX_FILE_NAME="mult_2ct.tdf"/>
 	</PROJECT>
 </LOG_ROOT>

@@ -2,8 +2,8 @@ module dequantizer_block (
     input clk, rst,
     input [31:0] level_int,
     input is_weight,
-    output reg [31:0] weight_fp_reg,
-    output reg ovfl_reg, unfl_reg, excp_reg
+    output reg [31:0] weight_fp_reg
+    //output reg ovfl_reg, unfl_reg, excp_reg
 );
 
     wire  [31:0] level_fp, qstep;
@@ -49,13 +49,13 @@ module dequantizer_block (
 	  always @(posedge clk) begin
 			if (!rst) begin
 				weight_fp_reg = 'b0;
-				excp_reg = 'b0;				ovfl_reg = 'b0;
-				unfl_reg = 'b0;				
+				//excp_reg = 'b0;				//ovfl_reg = 'b0;
+				//unfl_reg = 'b0;				
 			end else begin
 				weight_fp_reg = weight_fp;
-				excp_reg = excp;
-				ovfl_reg = ovfl;
-				unfl_reg = unfl;
+				//excp_reg = excp;
+				//ovfl_reg = ovfl;
+				//unfl_reg = unfl;
 			end
 	  end
 endmodule

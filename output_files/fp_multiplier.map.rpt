@@ -1,5 +1,5 @@
 Analysis & Synthesis report for fp_multiplier
-Wed Jul 02 17:46:28 2025
+Thu Jul 03 17:07:38 2025
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -10,7 +10,21 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis DSP Block Usage Summary
+  9. Registers Removed During Synthesis
+ 10. Removed Registers Triggering Further Register Optimizations
+ 11. General Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Parameter Settings for Inferred Entity Instance: Multiplication_pipeline:multiplier|lpm_mult:Mult0
+ 14. lpm_mult Parameter Settings by Entity Instance
+ 15. Port Connectivity Checks: "Multiplication_pipeline:multiplier"
+ 16. Port Connectivity Checks: "int_to_fp32_pipeline:int_to_fp|miao_lzc32:lzc"
+ 17. Port Connectivity Checks: "int_to_fp32_pipeline:int_to_fp"
+ 18. Elapsed Time Per Partition
+ 19. Analysis & Synthesis Messages
 
 
 
@@ -36,20 +50,20 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Wed Jul 02 17:46:28 2025               ;
+; Analysis & Synthesis Status        ; Successful - Thu Jul 03 17:07:38 2025           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; fp_multiplier                                   ;
 ; Top-level Entity Name              ; dequantizer_block                               ;
 ; Family                             ; Cyclone III                                     ;
-; Total logic elements               ; N/A until Partition Merge                       ;
-;     Total combinational functions  ; N/A until Partition Merge                       ;
-;     Dedicated logic registers      ; N/A until Partition Merge                       ;
-; Total registers                    ; N/A until Partition Merge                       ;
-; Total pins                         ; N/A until Partition Merge                       ;
-; Total virtual pins                 ; N/A until Partition Merge                       ;
-; Total memory bits                  ; N/A until Partition Merge                       ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                       ;
-; Total PLLs                         ; N/A until Partition Merge                       ;
+; Total logic elements               ; 628                                             ;
+;     Total combinational functions  ; 609                                             ;
+;     Dedicated logic registers      ; 206                                             ;
+; Total registers                    ; 206                                             ;
+; Total pins                         ; 67                                              ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 7                                               ;
+; Total PLLs                         ; 0                                               ;
 +------------------------------------+-------------------------------------------------+
 
 
@@ -150,13 +164,272 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                        ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                    ; Library ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------+---------+
+; int_to_fp32_pipeline.v           ; yes             ; User Verilog HDL File        ; C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/int_to_fp32_pipeline.v    ;         ;
+; dequantizer_block.v              ; yes             ; User Verilog HDL File        ; C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_block.v       ;         ;
+; Multiplication_pipeline.v        ; yes             ; User Verilog HDL File        ; C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_pipeline.v ;         ;
+; miao_lzc32.v                     ; yes             ; User Verilog HDL File        ; C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/miao_lzc32.v              ;         ;
+; lpm_mult.tdf                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mult.tdf                  ;         ;
+; aglobal130.inc                   ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc                ;         ;
+; lpm_add_sub.inc                  ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_add_sub.inc               ;         ;
+; multcore.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/multcore.inc                  ;         ;
+; bypassff.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/bypassff.inc                  ;         ;
+; altshift.inc                     ; yes             ; Megafunction                 ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altshift.inc                  ;         ;
+; db/mult_2ct.tdf                  ; yes             ; Auto-Generated Megafunction  ; C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/db/mult_2ct.tdf           ;         ;
++----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimated Total logic elements              ; 628       ;
+;                                             ;           ;
+; Total combinational functions               ; 609       ;
+; Logic element usage by number of LUT inputs ;           ;
+;     -- 4 input functions                    ; 196       ;
+;     -- 3 input functions                    ; 228       ;
+;     -- <=2 input functions                  ; 185       ;
+;                                             ;           ;
+; Logic elements by mode                      ;           ;
+;     -- normal mode                          ; 443       ;
+;     -- arithmetic mode                      ; 166       ;
+;                                             ;           ;
+; Total registers                             ; 206       ;
+;     -- Dedicated logic registers            ; 206       ;
+;     -- I/O registers                        ; 0         ;
+;                                             ;           ;
+; I/O pins                                    ; 67        ;
+; Embedded Multiplier 9-bit elements          ; 7         ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 206       ;
+; Total fan-out                               ; 2519      ;
+; Average fan-out                             ; 2.63      ;
++---------------------------------------------+-----------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                               ;
++-----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node              ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                          ; Library Name ;
++-----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------+--------------+
+; |dequantizer_block                      ; 609 (39)          ; 206 (70)     ; 0           ; 7            ; 1       ; 3         ; 67   ; 0            ; |dequantizer_block                                                                           ; work         ;
+;    |Multiplication_pipeline:multiplier| ; 200 (145)         ; 98 (98)      ; 0           ; 7            ; 1       ; 3         ; 0    ; 0            ; |dequantizer_block|Multiplication_pipeline:multiplier                                        ; work         ;
+;       |lpm_mult:Mult0|                  ; 55 (0)            ; 0 (0)        ; 0           ; 7            ; 1       ; 3         ; 0    ; 0            ; |dequantizer_block|Multiplication_pipeline:multiplier|lpm_mult:Mult0                         ; work         ;
+;          |mult_2ct:auto_generated|      ; 55 (55)           ; 0 (0)        ; 0           ; 7            ; 1       ; 3         ; 0    ; 0            ; |dequantizer_block|Multiplication_pipeline:multiplier|lpm_mult:Mult0|mult_2ct:auto_generated ; work         ;
+;    |int_to_fp32_pipeline:int_to_fp|     ; 370 (325)         ; 38 (38)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |dequantizer_block|int_to_fp32_pipeline:int_to_fp                                            ; work         ;
+;       |miao_lzc32:lzc|                  ; 45 (9)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |dequantizer_block|int_to_fp32_pipeline:int_to_fp|miao_lzc32:lzc                             ; work         ;
+;          |lzc_miao_8:lzc_8_0|           ; 10 (10)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |dequantizer_block|int_to_fp32_pipeline:int_to_fp|miao_lzc32:lzc|lzc_miao_8:lzc_8_0          ; work         ;
+;          |lzc_miao_8:lzc_8_1|           ; 10 (10)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |dequantizer_block|int_to_fp32_pipeline:int_to_fp|miao_lzc32:lzc|lzc_miao_8:lzc_8_1          ; work         ;
+;          |lzc_miao_8:lzc_8_2|           ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |dequantizer_block|int_to_fp32_pipeline:int_to_fp|miao_lzc32:lzc|lzc_miao_8:lzc_8_2          ; work         ;
+;          |lzc_miao_8:lzc_8_3|           ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |dequantizer_block|int_to_fp32_pipeline:int_to_fp|miao_lzc32:lzc|lzc_miao_8:lzc_8_3          ; work         ;
++-----------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary        ;
++---------------------------------------+-------------+
+; Statistic                             ; Number Used ;
++---------------------------------------+-------------+
+; Simple Multipliers (9-bit)            ; 1           ;
+; Simple Multipliers (18-bit)           ; 3           ;
+; Embedded Multiplier Blocks            ; --          ;
+; Embedded Multiplier 9-bit elements    ; 7           ;
+; Signed Embedded Multipliers           ; 0           ;
+; Unsigned Embedded Multipliers         ; 4           ;
+; Mixed Sign Embedded Multipliers       ; 0           ;
+; Variable Sign Embedded Multipliers    ; 0           ;
+; Dedicated Input Shift Register Chains ; 0           ;
++---------------------------------------+-------------+
+Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                        ;
++--------------------------------------------------------+------------------------------------------------------------------+
+; Register name                                          ; Reason for Removal                                               ;
++--------------------------------------------------------+------------------------------------------------------------------+
+; qstep_reg1[2,3,22,24,30,31]                            ; Stuck at GND due to stuck port data_in                           ;
+; qstep_reg2[2,3,22,24,30,31]                            ; Stuck at GND due to stuck port data_in                           ;
+; Multiplication_pipeline:multiplier|b_exponent_reg[1,7] ; Stuck at GND due to stuck port data_in                           ;
+; Multiplication_pipeline:multiplier|op_b_reg[2,3,22]    ; Stuck at GND due to stuck port data_in                           ;
+; int_to_fp32_pipeline:int_to_fp|num_exp_reg[5]          ; Stuck at GND due to stuck port data_in                           ;
+; qstep_reg1[1,4,26]                                     ; Merged with qstep_reg1[0]                                        ;
+; qstep_reg1[6..20,23,27]                                ; Merged with qstep_reg1[5]                                        ;
+; qstep_reg1[25,28,29]                                   ; Merged with qstep_reg1[21]                                       ;
+; Multiplication_pipeline:multiplier|op_b_reg[23]        ; Merged with qstep_reg1[21]                                       ;
+; qstep_reg2[1,4,26]                                     ; Merged with qstep_reg2[0]                                        ;
+; qstep_reg2[5..9,11..20,23,27]                          ; Merged with qstep_reg2[10]                                       ;
+; qstep_reg2[25,28,29]                                   ; Merged with qstep_reg2[21]                                       ;
+; Multiplication_pipeline:multiplier|b_exponent_reg[4]   ; Merged with Multiplication_pipeline:multiplier|b_exponent_reg[0] ;
+; Multiplication_pipeline:multiplier|op_b_reg[5..20]     ; Merged with Multiplication_pipeline:multiplier|b_exponent_reg[0] ;
+; Multiplication_pipeline:multiplier|b_exponent_reg[5,6] ; Merged with Multiplication_pipeline:multiplier|b_exponent_reg[2] ;
+; Multiplication_pipeline:multiplier|op_b_reg[21]        ; Merged with Multiplication_pipeline:multiplier|b_exponent_reg[2] ;
+; Multiplication_pipeline:multiplier|op_b_reg[0,1,4]     ; Merged with Multiplication_pipeline:multiplier|b_exponent_reg[3] ;
+; Total Number of Removed Registers = 88                 ;                                                                  ;
++--------------------------------------------------------+------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                       ;
++----------------+---------------------------+----------------------------------------------------------------------+
+; Register name  ; Reason for Removal        ; Registers Removed due to This Register                               ;
++----------------+---------------------------+----------------------------------------------------------------------+
+; qstep_reg1[2]  ; Stuck at GND              ; qstep_reg2[2], Multiplication_pipeline:multiplier|op_b_reg[2]        ;
+;                ; due to stuck port data_in ;                                                                      ;
+; qstep_reg1[3]  ; Stuck at GND              ; qstep_reg2[3], Multiplication_pipeline:multiplier|op_b_reg[3]        ;
+;                ; due to stuck port data_in ;                                                                      ;
+; qstep_reg1[22] ; Stuck at GND              ; qstep_reg2[22], Multiplication_pipeline:multiplier|op_b_reg[22]      ;
+;                ; due to stuck port data_in ;                                                                      ;
+; qstep_reg1[24] ; Stuck at GND              ; qstep_reg2[24], Multiplication_pipeline:multiplier|b_exponent_reg[1] ;
+;                ; due to stuck port data_in ;                                                                      ;
+; qstep_reg1[30] ; Stuck at GND              ; qstep_reg2[30], Multiplication_pipeline:multiplier|b_exponent_reg[7] ;
+;                ; due to stuck port data_in ;                                                                      ;
+; qstep_reg1[31] ; Stuck at GND              ; qstep_reg2[31]                                                       ;
+;                ; due to stuck port data_in ;                                                                      ;
++----------------+---------------------------+----------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 206   ;
+; Number of registers using Synchronous Clear  ; 107   ;
+; Number of registers using Synchronous Load   ; 8     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
+; 3:1                ; 24 bits   ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; Yes        ; |dequantizer_block|weight_fp_reg[22]~reg0                                 ;
+; 3:1                ; 15 bits   ; 30 LEs        ; 15 LEs               ; 15 LEs                 ; Yes        ; |dequantizer_block|int_to_fp32_pipeline:int_to_fp|int_abs_shifted_reg[0]  ;
+; 4:1                ; 7 bits    ; 14 LEs        ; 14 LEs               ; 0 LEs                  ; Yes        ; |dequantizer_block|int_to_fp32_pipeline:int_to_fp|int_abs_shifted_reg[16] ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; Yes        ; |dequantizer_block|int_to_fp32_pipeline:int_to_fp|int_abs_shifted_reg[24] ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |dequantizer_block|int_to_fp32_pipeline:int_to_fp|int_abs_shifted_reg[27] ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |dequantizer_block|weight_fp_reg[29]~reg0                                 ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |dequantizer_block|int_to_fp32_pipeline:int_to_fp|int_abs_shifted_reg[29] ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |dequantizer_block|int_to_fp32_pipeline:int_to_fp|miao_lzc32:lzc|out_z[3] ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; No         ; |dequantizer_block|int_to_fp32_pipeline:int_to_fp|miao_lzc32:lzc|out_z[1] ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: Multiplication_pipeline:multiplier|lpm_mult:Mult0 ;
++------------------------------------------------+-------------+-------------------------------------+
+; Parameter Name                                 ; Value       ; Type                                ;
++------------------------------------------------+-------------+-------------------------------------+
+; AUTO_CARRY_CHAINS                              ; ON          ; AUTO_CARRY                          ;
+; IGNORE_CARRY_BUFFERS                           ; OFF         ; IGNORE_CARRY                        ;
+; AUTO_CASCADE_CHAINS                            ; ON          ; AUTO_CASCADE                        ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF         ; IGNORE_CASCADE                      ;
+; LPM_WIDTHA                                     ; 24          ; Untyped                             ;
+; LPM_WIDTHB                                     ; 24          ; Untyped                             ;
+; LPM_WIDTHP                                     ; 48          ; Untyped                             ;
+; LPM_WIDTHR                                     ; 48          ; Untyped                             ;
+; LPM_WIDTHS                                     ; 1           ; Untyped                             ;
+; LPM_REPRESENTATION                             ; UNSIGNED    ; Untyped                             ;
+; LPM_PIPELINE                                   ; 0           ; Untyped                             ;
+; LATENCY                                        ; 0           ; Untyped                             ;
+; INPUT_A_IS_CONSTANT                            ; NO          ; Untyped                             ;
+; INPUT_B_IS_CONSTANT                            ; NO          ; Untyped                             ;
+; USE_EAB                                        ; OFF         ; Untyped                             ;
+; MAXIMIZE_SPEED                                 ; 5           ; Untyped                             ;
+; DEVICE_FAMILY                                  ; Cyclone III ; Untyped                             ;
+; CARRY_CHAIN                                    ; MANUAL      ; Untyped                             ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT         ; TECH_MAPPER_APEX20K                 ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO        ; Untyped                             ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0           ; Untyped                             ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0           ; Untyped                             ;
+; CBXI_PARAMETER                                 ; mult_2ct    ; Untyped                             ;
+; INPUT_A_FIXED_VALUE                            ; Bx          ; Untyped                             ;
+; INPUT_B_FIXED_VALUE                            ; Bx          ; Untyped                             ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF         ; Untyped                             ;
++------------------------------------------------+-------------+-------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------+
+; lpm_mult Parameter Settings by Entity Instance                                            ;
++---------------------------------------+---------------------------------------------------+
+; Name                                  ; Value                                             ;
++---------------------------------------+---------------------------------------------------+
+; Number of entity instances            ; 1                                                 ;
+; Entity Instance                       ; Multiplication_pipeline:multiplier|lpm_mult:Mult0 ;
+;     -- LPM_WIDTHA                     ; 24                                                ;
+;     -- LPM_WIDTHB                     ; 24                                                ;
+;     -- LPM_WIDTHP                     ; 48                                                ;
+;     -- LPM_REPRESENTATION             ; UNSIGNED                                          ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                                ;
+;     -- INPUT_B_IS_CONSTANT            ; NO                                                ;
+;     -- USE_EAB                        ; OFF                                               ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                              ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                                ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                                ;
++---------------------------------------+---------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Multiplication_pipeline:multiplier"                                                      ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; exception ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; overflow  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; underflow ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "int_to_fp32_pipeline:int_to_fp|miao_lzc32:lzc"                                      ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; v    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "int_to_fp32_pipeline:int_to_fp"                                                          ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Exception ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Overflow  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Underflow ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Wed Jul 02 17:46:28 2025
+    Info: Processing started: Thu Jul 03 17:07:37 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off fp_multiplier -c fp_multiplier
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file dequantizer_block_pipe_tb.sv
@@ -196,11 +469,49 @@ Info (12021): Found 1 design units, including 1 entities, in source file tb_int_
     Info (12023): Found entity 1: tb_int_to_fp32_pipeline
 Info (12021): Found 1 design units, including 1 entities, in source file tb_dequantizer_parallel.sv
     Info (12023): Found entity 1: tb_dequantizer_parallel
-Error (10734): Verilog HDL error at tb_dequantizer_parallel.sv(79): is_weight is not a constant File: C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_parallel.sv Line: 79
-Error: Quartus II 64-Bit Analysis & Synthesis was unsuccessful. 1 error, 1 warning
-    Error: Peak virtual memory: 4573 megabytes
-    Error: Processing ended: Wed Jul 02 17:46:28 2025
-    Error: Elapsed time: 00:00:00
-    Error: Total CPU time (on all processors): 00:00:00
+Info (12021): Found 1 design units, including 1 entities, in source file dequantizer_blockx2.v
+    Info (12023): Found entity 1: dequantizer_blockx2
+Info (12021): Found 1 design units, including 1 entities, in source file dequantizer_blockx4.v
+    Info (12023): Found entity 1: dequantizer_blockx4
+Info (12021): Found 1 design units, including 1 entities, in source file tb_dequantizer_multiple.sv
+    Info (12023): Found entity 1: tb_dequantizer_multiple
+Info (12127): Elaborating entity "dequantizer_block" for the top level hierarchy
+Info (12128): Elaborating entity "int_to_fp32_pipeline" for hierarchy "int_to_fp32_pipeline:int_to_fp"
+Warning (10230): Verilog HDL assignment warning at int_to_fp32_pipeline.v(50): truncated value with size 32 to match size of target (6)
+Warning (10230): Verilog HDL assignment warning at int_to_fp32_pipeline.v(51): truncated value with size 32 to match size of target (6)
+Warning (10230): Verilog HDL assignment warning at int_to_fp32_pipeline.v(74): truncated value with size 24 to match size of target (23)
+Info (12128): Elaborating entity "miao_lzc32" for hierarchy "int_to_fp32_pipeline:int_to_fp|miao_lzc32:lzc"
+Info (12128): Elaborating entity "lzc_miao_8" for hierarchy "int_to_fp32_pipeline:int_to_fp|miao_lzc32:lzc|lzc_miao_8:lzc_8_0"
+Info (12128): Elaborating entity "Multiplication_pipeline" for hierarchy "Multiplication_pipeline:multiplier"
+Info (278001): Inferred 1 megafunctions from design logic
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "Multiplication_pipeline:multiplier|Mult0"
+Info (12130): Elaborated megafunction instantiation "Multiplication_pipeline:multiplier|lpm_mult:Mult0"
+Info (12133): Instantiated megafunction "Multiplication_pipeline:multiplier|lpm_mult:Mult0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHA" = "24"
+    Info (12134): Parameter "LPM_WIDTHB" = "24"
+    Info (12134): Parameter "LPM_WIDTHP" = "48"
+    Info (12134): Parameter "LPM_WIDTHR" = "48"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_2ct.tdf
+    Info (12023): Found entity 1: mult_2ct
+Info (13014): Ignored 158 buffer(s)
+    Info (13019): Ignored 158 SOFT buffer(s)
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 705 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 35 input pins
+    Info (21059): Implemented 32 output pins
+    Info (21061): Implemented 631 logic cells
+    Info (21062): Implemented 7 DSP elements
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 4 warnings
+    Info: Peak virtual memory: 4596 megabytes
+    Info: Processing ended: Thu Jul 03 17:07:38 2025
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
 
 

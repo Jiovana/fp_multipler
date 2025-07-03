@@ -6,9 +6,6 @@ entity dequantizer_block is
         rst             : in     vl_logic;
         level_int       : in     vl_logic_vector(31 downto 0);
         is_weight       : in     vl_logic;
-        weight_fp_reg   : out    vl_logic_vector(31 downto 0);
-        ovfl_reg        : out    vl_logic;
-        unfl_reg        : out    vl_logic;
-        excp_reg        : out    vl_logic
+        weight_fp_reg   : out    vl_logic_vector(31 downto 0)
     );
 end dequantizer_block;

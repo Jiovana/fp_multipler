@@ -54,6 +54,13 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	int_to_fp32
 
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_blockx2.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_blockx2.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module dequantizer_blockx2
+
+Top level modules:
+	dequantizer_blockx2
+
 } {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_int_to_fp32_pipeline.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_int_to_fp32_pipeline.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module tb_int_to_fp32_pipeline
@@ -61,12 +68,26 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	tb_int_to_fp32_pipeline
 
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_blockx4.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/dequantizer_blockx4.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module dequantizer_blockx4
+
+Top level modules:
+	dequantizer_blockx4
+
 } {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/fpmult2.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/fpmult2.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module Multiplication2
 
 Top level modules:
 	Multiplication2
+
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_pipeline.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_pipeline.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Multiplication_pipeline
+
+Top level modules:
+	Multiplication_pipeline
 
 } {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_tb.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_tb.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
@@ -87,13 +108,6 @@ Top level modules:
 	lzc_miao_16
 	miao_lzc32
 
-} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_pipeline.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_pipeline.v
-Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module Multiplication_pipeline
-
-Top level modules:
-	Multiplication_pipeline
-
 } {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_tb_python.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication_tb_python.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module multiplication_tb_python
@@ -108,7 +122,14 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	dequantizer_block
 
-} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication__pipe_tb.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication__pipe_tb.v
+} {} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv {0 {vlog -work work -sv C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module tb_dequantizer_multiple
+** Error: C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv(117): Arg. 'item' of 'push_back':  Illegal assignment to type 'tb_dequantizer_multiple.struct packed' from type 'tb_dequantizer_multiple.struct packed $[0:NUM...]': Cannot assign an unpacked type to a packed type.
+** Error: C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv(122): Illegal assignment to type 'tb_dequantizer_multiple.struct packed $[0:NUM...]' from type 'tb_dequantizer_multiple.struct packed': Cannot assign a packed type to an unpacked type.
+** Error: C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv(139): Illegal assignment to type 'tb_dequantizer_multiple.struct packed $[0:NUM...]' from type 'tb_dequantizer_multiple.struct packed': Cannot assign a packed type to an unpacked type.
+
+} {4.0 7.0} {}} C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication__pipe_tb.v {1 {vlog -work work C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/Multiplication__pipe_tb.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module Multiplication__pipe_tb
 

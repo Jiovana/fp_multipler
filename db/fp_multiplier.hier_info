@@ -67,9 +67,6 @@ weight_fp_reg[28] <= weight_fp_reg[28]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 weight_fp_reg[29] <= weight_fp_reg[29]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 weight_fp_reg[30] <= weight_fp_reg[30]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 weight_fp_reg[31] <= weight_fp_reg[31]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-ovfl_reg <= ovfl_reg~reg0.DB_MAX_OUTPUT_PORT_TYPE
-unfl_reg <= unfl_reg~reg0.DB_MAX_OUTPUT_PORT_TYPE
-excp_reg <= excp_reg~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |dequantizer_block|int_to_fp32_pipeline:int_to_fp

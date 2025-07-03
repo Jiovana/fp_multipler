@@ -15,9 +15,6 @@ module tb_dequantizer_parallel;
   logic [31:0] level_int   [NUM_BLOCKS];
   logic        is_weight   [NUM_BLOCKS];
   logic [31:0] weight_fp   [NUM_BLOCKS];
-  logic        ovf_flag    [NUM_BLOCKS];
-  logic        unf_flag    [NUM_BLOCKS];
-  logic        excp_flag   [NUM_BLOCKS];
 
   // Instantiate DUTs
   genvar i;
@@ -28,10 +25,7 @@ module tb_dequantizer_parallel;
         .rst(rst),
         .level_int(level_int[i]),
         .is_weight(is_weight[i]),
-        .weight_fp_reg(weight_fp[i]),
-        .ovfl_reg(ovf_flag[i]),
-        .unfl_reg(unf_flag[i]),
-        .excp_reg(excp_flag[i])
+        .weight_fp_reg(weight_fp[i])
       );
     end
   endgenerate
@@ -59,10 +53,11 @@ module tb_dequantizer_parallel;
     int weight_flag;
     string hex_str;
     int expected_val;
-	 int cycle;
-	 test_vector_t tv_expected;
-	 static int max_cycles = MAX_LINES_PER_BLOCK + PIPELINE_LATENCY + 10;
-	 int total_errors;
+    int cycle;
+    test_vector_t tv_expected, tv_temp;
+    static int max_cycles = MAX_LINES_PER_BLOCK + PIPELINE_LATENCY + 10;
+    int total_errors;
+    string line;
 
     $display("[INFO] Starting parallel dequantizer test...");
 
@@ -73,10 +68,29 @@ module tb_dequantizer_parallel;
       end
 
       idx = 0;
+		dummy = $fgets(line, fd); // eats the header line
       while (!$feof(fd) && idx < MAX_LINES_PER_BLOCK) begin
-        dummy = $fscanf(fd, "%d,%d,%s\n", level_val, weight_flag, hex_str);
-        dummy = $sscanf(hex_str, "0x%x", expected_val);
-        test_queue[j][idx] = '{level: level_val, is_weight: weight_flag, expected: expected_val};
+        line = "";
+        dummy = $fgets(line, fd); // get the whole line
+        if (line.len() > 0) begin
+          dummy = $sscanf(line, "%d,%d,%s", level_val, weight_flag, hex_str);
+          if (dummy == 3) begin
+            dummy = $sscanf(hex_str, "0x%x", expected_val);
+            if (dummy == 1) begin
+              tv_temp.level     = level_val;
+              //$display("level_val %d\n", tv_temp.level);
+              tv_temp.is_weight = weight_flag; // <-- this is the problematic line
+              tv_temp.expected  = expected_val;
+              test_queue[j][idx] = tv_temp;
+            end else begin
+              $display("[ERROR] Failed to parse hex string: %s", hex_str);
+            end
+          end else begin
+            $display("[ERROR] Failed to parse CSV line: %s", line);
+          end
+        end
+      
+         //test_queue[j][idx] = '{level: level_val, is_weight: weight_flag, expected: expected_val};
         idx++;
       end
       test_counts[j] = idx;
@@ -84,7 +98,7 @@ module tb_dequantizer_parallel;
     end
 
     rst = 0;
-    repeat (3) @(negedge clk);
+    repeat (2) @(negedge clk);
     rst = 1;
 
     
