@@ -54,58 +54,78 @@ module lzc_miao_16 (
   assign v = !(vh | vl);
 endmodule
 
-
-module lzc_miao_8 (
-  input  [7:0] in,
-  output reg [2:0] out_z,
-  output wire v
+// ignore this name, it is not based on paper anymore but quartus demands to have it the same name as the file
+module miao_lzc32 (
+  input  [31:0] in,
+  output [4:0]  out_z,
+  output        v
 );
+
+  wire [3:0] group_valid;
+  wire [3:0] group_lzc [3:0];
+
+  // Generate 8-bit LZCs for each byte of the input
+  assign group_valid[3] = |in[31:24];
+  assign group_lzc[3] = (in[31]) ? 3'd0 :
+                        (in[30]) ? 3'd1 :
+                        (in[29]) ? 3'd2 :
+                        (in[28]) ? 3'd3 :
+                        (in[27]) ? 3'd4 :
+                        (in[26]) ? 3'd5 :
+                        (in[25]) ? 3'd6 :
+                        (in[24]) ? 3'd7 : 4'd8;
+
+  assign group_valid[2] = |in[23:16];
+  assign group_lzc[2] = (in[23]) ? 3'd0 :
+                        (in[22]) ? 3'd1 :
+                        (in[21]) ? 3'd2 :
+                        (in[20]) ? 3'd3 :
+                        (in[19]) ? 3'd4 :
+                        (in[18]) ? 3'd5 :
+                        (in[17]) ? 3'd6 :
+                        (in[16]) ? 3'd7 : 4'd8;
+
+  assign group_valid[1] = |in[15:8];
+  assign group_lzc[1] = (in[15]) ? 3'd0 :
+                        (in[14]) ? 3'd1 :
+                        (in[13]) ? 3'd2 :
+                        (in[12]) ? 3'd3 :
+                        (in[11]) ? 3'd4 :
+                        (in[10]) ? 3'd5 :
+                        (in[9])  ? 3'd6 :
+                        (in[8])  ? 3'd7 : 4'd8;
+
+  assign group_valid[0] = |in[7:0];
+  assign group_lzc[0] = (in[7]) ? 3'd0 :
+                        (in[6]) ? 3'd1 :
+                        (in[5]) ? 3'd2 :
+                        (in[4]) ? 3'd3 :
+                        (in[3]) ? 3'd4 :
+                        (in[2]) ? 3'd5 :
+                        (in[1]) ? 3'd6 :
+                        (in[0]) ? 3'd7 : 4'd8;
+
+  // Bitwise priority encoder (no casex)
+  wire [1:0] sel;
+  wire [1:0] sel2;
+  assign sel = (group_valid[3]) ? 2'd3 :
+               (group_valid[2]) ? 2'd2 :
+               (group_valid[1]) ? 2'd1 :
+               (group_valid[0]) ? 2'd0 : 2'd0;
+					
+					
+  assign sel2 = (group_valid[3]) ? 2'd0 :
+                (group_valid[2]) ? 2'd1 :
+                (group_valid[1]) ? 2'd2 :
+                (group_valid[0]) ? 2'd3 : 2'd0;
+
+  wire [3:0] local_lzc;
+  assign local_lzc = group_lzc[sel];
+  
+
+  assign out_z = {sel2,local_lzc[2:0]} ;
 
   assign v = |in;
 
-  always @(*) begin
-    casex (in)
-      8'b1???????: out_z = 3'd0;
-      8'b01??????: out_z = 3'd1;
-      8'b001?????: out_z = 3'd2;
-      8'b0001????: out_z = 3'd3;
-      8'b00001???: out_z = 3'd4;
-      8'b000001??: out_z = 3'd5;
-      8'b0000001?: out_z = 3'd6;
-      8'b00000001: out_z = 3'd7;
-      default:     out_z = 3'd0; // undefined, v = 0
-    endcase
-  end
 endmodule
- 
-module miao_lzc32 (
-  input  [31:0] in,
-  output reg [4:0] out_z,
-  output wire v
-);
-	
-	wire [2:0] z0, z1, z2, z3;
-	wire v0, v1, v2, v3;
-	
 
-  lzc_miao_8 lzc_8_0 (.in (in[31:24]), .out_z (z0), .v (v0));
-  lzc_miao_8 lzc_8_1 (.in (in[23:16]), .out_z (z1), .v (v1));
-  lzc_miao_8 lzc_8_2 (.in (in[15:8]), .out_z (z2), .v (v2));
-  lzc_miao_8 lzc_8_3 (.in (in[7:0]), .out_z (z3), .v (v3));
-  
-  assign v = (v3 | v2 | v1 | v0);
-  
-  always @(*) begin
-    if (v0)
-      out_z = 5'd0 + z0;               // bits 31–24
-    else if (v1)
-      out_z = 5'd8  + z1;       // bits 23–16
-    else if (v2)
-      out_z = 5'd16 +  z2;       // bits 15–8
-    else if (v3)
-      out_z = 5'd24 + z3;       // bits 7–0
-    else
-      out_z = 5'd0;             // undefined
-  end
-
-endmodule

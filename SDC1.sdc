@@ -1,6 +1,6 @@
 #create_clock -name clk -period 10
 # creates a virtual clock (not attached to any real port) with period of 10ns
-create_clock -name clk -period 10 [get_ports clk]
+create_clock -name clk -period 4.5 [get_ports clk]
 
 #setting input and output delays to make Quartus calculate timing information
 set_input_delay -clock clk -max 0.2 [all_inputs]

@@ -191,14 +191,14 @@ module tb_dequantizer_multiple;
   end
   
         // VCD generation
-    initial begin
-        $dumpfile("dequantizer_x1.vcd");
-        $dumpvars(0, tb_dequantizer_parallel);
-    end
+   // initial begin
+     //   $dumpfile("dequantizer_x1.vcd");
+      //  $dumpvars(0, tb_dequantizer_parallel);
+   // end
 
     // SDF annotation
-    initial begin
-      $sdf_annotate("dequantizer_block_delays.sdf",tb_dequantizer_multiple.dut,,"sdf.log", "MAXIMUM");
-    end
+    //initial begin
+     // $sdf_annotate("synth/outputs_final/dequantizer_block_delays.sdf",tb_dequantizer_multiple.dut,,"sdf.log", "MAXIMUM");
+    //end
 
 endmodule

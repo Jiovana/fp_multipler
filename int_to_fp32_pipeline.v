@@ -36,7 +36,7 @@ assign abs_val = sign ? (~int_in + 1) : int_in;
 assign is_zero = (abs_val == 32'd0);
 
 // leading zeros counter module 
-miao_lzc32 lzc (
+miao_lzc32 lzc32(
     .in     (abs_val),
     .out_z  (out_lzc),
     .v      (v_lzc)

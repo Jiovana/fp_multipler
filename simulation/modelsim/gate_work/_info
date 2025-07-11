@@ -1,0 +1,48 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\Jiovana\Documents\FP_multiplier\fp_multipler\simulation\modelsim
+vdequantizer_block
+IjEcWNEmJhQLbN8>DzP7;92
+Vl[zjBbfJa>[0gk6^mYnBG3
+Z1 dC:\Users\Jiovana\Documents\FP_multiplier\fp_multipler\simulation\modelsim
+w1752260475
+8fp_multiplier_6_1200mv_85c_slow.vo
+Ffp_multiplier_6_1200mv_85c_slow.vo
+L0 31
+Z2 OV;L;10.1d;51
+r1
+31
+o-vlog01compat -work work -O0
+!i10b 1
+!s100 00HUKhgh6Z;dP49JgNc:m2
+!s85 0
+!s108 1752260493.743000
+!s107 fp_multiplier_6_1200mv_85c_slow.vo|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+.|fp_multiplier_6_1200mv_85c_slow.vo|
+!s101 -O0
+!s92 -vlog01compat -work work +incdir+. -O0
+vtb_dequantizer_multiple
+DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+!i10b 1
+!s100 >PH1BAEj?jY1akbWG1>nC1
+Ih?JhgQ1TLJ>834>K[YL2Q1
+VGR:Ih=<R_h^L3=b3lA3Va0
+!s105 tb_dequantizer_multiple_sv_unit
+S1
+R1
+w1752260459
+8C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv
+FC:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv
+L0 4
+R2
+r1
+!s85 0
+31
+!s108 1752260493.804000
+!s107 C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv|
+!s90 -reportprogress|300|-sv|-work|work|+incdir+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler|C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv|
+!s101 -O0
+o-sv -work work -O0
+!s92 -sv -work work +incdir+C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler -O0

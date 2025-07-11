@@ -32,7 +32,6 @@
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 # -- Compiling module lzc_miao_8_old
 # -- Compiling module lzc_miao_16
-# -- Compiling module lzc_miao_8
 # -- Compiling module miao_lzc32
 # 
 # Top level modules:
@@ -54,17 +53,25 @@
 # Loading work.dequantizer_block
 # Loading work.int_to_fp32_pipeline
 # Loading work.miao_lzc32
-# Loading work.lzc_miao_8
 # Loading work.Multiplication_pipeline
-# ** Warning: (vsim-PLI-3028) C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv(194): $sdf_annotate : 4th argument (log file) is not supported.
 # 
-#         Region: /tb_dequantizer_multiple
-# ** Error: (vsim-SDF-3894) dequantizer_x1.sdf: Compiled SDF file was not found.
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# [INFO] Loaded from test_vectors/test_vectors_alexnet.csv
+# [INFO] Loaded from test_vectors/test_vectors_bmjsh.csv
+# [INFO] Loaded from test_vectors/test_vectors_cheng.csv
+# [INFO] Loaded from test_vectors/test_vectors_deeplab.csv
+# [INFO] Loaded from test_vectors/test_vectors_inception.csv
+# [INFO] Loaded from test_vectors/test_vectors_ssd.csv
+# [INFO] Loaded from test_vectors/test_vectors_unet.csv
+# [INFO] Loaded from test_vectors/test_vectors_yolo11s.csv
+# [INFO] Total entries loaded: 800000
 # 
-# ** Error: (vsim-3043) C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv(189): Unresolved reference to 'tb_dequantizer_parallel'.
-# 
-#         Region: /tb_dequantizer_multiple
-# Error loading design
-# Error: Error loading design 
-#        Pausing macro execution 
-# MACRO ./fp_multiplier_run_msim_rtl_verilog.do PAUSED at line 15
+# [PASS] All tests passed.
+# Break in Module tb_dequantizer_multiple at C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv line 190
+# Simulation Breakpoint: Break in Module tb_dequantizer_multiple at C:/Users/Jiovana/Documents/FP_multiplier/fp_multipler/tb_dequantizer_multiple.sv line 190
+# MACRO ./fp_multiplier_run_msim_rtl_verilog.do PAUSED at line 20
